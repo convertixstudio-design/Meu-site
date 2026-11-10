@@ -1,0 +1,2457 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laser Dental Clinic — София | Прецизна лазерна дентална медицина</title>
+<meta name="description" content="Лазерна дентална клиника в София. Прецизна лазерна медицина, 3D диагностика и персонализирани грижи за оралното здраве.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+1. DESIGN SYSTEM
+============================================================ /
+:root{
+--ink:#0A1628;
+--ink-2:#101f38;
+--ivory:#F7F3EE;
+--ivory-2:#F2EDE8;
+--gold:#B8956A;
+--gold-2:#D4B896;
+--ash:#E8E4DF;
+--charcoal:#2D3748;
+--muted:#5E6D77;
+--white:#FFFFFF;
+--success:#2D6A4F;
+--err:#9B2226;
+--font-serif:'Playfair Display',Georgia,serif;
+--font-sans:'Jost',system-ui,-apple-system,sans-serif;
+--font-mono:'JetBrains Mono',monospace;
+--ease:cubic-bezier(0.16,1,0.3,1);
+--ease-soft:cubic-bezier(0.25,0.46,0.45,0.94);
+--sidebar-w:280px;
+--radius-sm:8px;
+--radius-md:14px;
+--radius-lg:22px;
+--shadow-soft:0 4px 24px rgba(10,22,40,.06);
+--shadow-lift:0 24px 60px rgba(10,22,40,.12);
+}
+,::before,::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{
+font-family:var(--font-sans);
+background:var(--ivory);
+color:var(--ink);
+line-height:1.65;
+min-height:100vh;
+overflow-x:hidden;
+}
+body.no-scroll{overflow:hidden}
+
+h1,h2,h3,h4{font-family:var(--font-serif);font-weight:500;line-height:1.15;letter-spacing:-.01em}
+h1{font-size:clamp(2.2rem,5.5vw,4.2rem)}
+h2{font-size:clamp(1.8rem,3.4vw,2.8rem)}
+h3{font-size:clamp(1.2rem,2vw,1.6rem)}
+h4{font-family:var(--font-sans);font-weight:500;font-size:1rem;letter-spacing:.02em}
+p{color:var(--charcoal);font-size:1rem;line-height:1.75}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul{list-style:none}
+
+::selection{background:var(--ink);color:var(--ivory)}
+
+/* ============================================================
+2. CANVAS BACKGROUND
+============================================================ */
+#bg-canvas{
+position:fixed;
+inset:0;
+width:100%;
+height:100%;
+z-index:0;
+pointer-events:none;
+opacity:.75;
+}
+
+/* ============================================================
+3. SIDEBAR
+============================================================ */
+.sidebar{
+position:fixed;
+top:0;left:0;bottom:0;
+width:var(--sidebar-w);
+background:linear-gradient(180deg,var(--ink) 0%,var(--ink-2) 100%);
+color:var(--ivory);
+z-index:100;
+display:flex;
+flex-direction:column;
+padding:2rem 1.25rem 1.5rem;
+transition:transform .5s var(--ease);
+overflow-y:auto;
+overflow-x:hidden;
+border-right:1px solid rgba(255,255,255,.05);
+}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(184,149,106,.3);border-radius:4px}
+
+.sidebar-header{margin-bottom:2rem;padding:0 .5rem}
+.brand{display:flex;align-items:center;gap:.85rem}
+.brand-mark{
+width:44px;height:44px;border-radius:50%;
+background:linear-gradient(135deg,var(--gold) 0%,var(--gold-2) 100%);
+color:var(--ink);
+display:grid;place-items:center;
+font-family:var(--font-serif);font-size:1.2rem;font-weight:700;
+flex-shrink:0;
+box-shadow:0 0 0 1px rgba(184,149,106,.3),0 4px 16px rgba(184,149,106,.2);
+}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.brand-text strong{
+font-family:var(--font-serif);font-size:1rem;font-weight:600;
+letter-spacing:.01em;color:var(--ivory);white-space:nowrap;
+overflow:hidden;text-overflow:ellipsis;
+}
+.brand-text small{
+font-family:var(--font-mono);font-size:.62rem;
+letter-spacing:.16em;text-transform:uppercase;
+color:rgba(247,243,238,.5);margin-top:2px;
+}
+
+.sidebar-nav{display:flex;flex-direction:column;gap:2px;flex:1}
+.nav-item{
+display:flex;align-items:center;gap:.85rem;
+padding:.72rem .85rem;
+border-radius:10px;
+color:rgba(247,243,238,.7);
+font-size:.87rem;font-weight:500;
+letter-spacing:.01em;
+transition:all .25s var(--ease);
+position:relative;
+cursor:pointer;
+border:none;
+background:none;
+width:100%;
+text-align:left;
+font-family:inherit;
+}
+.nav-item:hover{
+color:var(--ivory);
+background:rgba(255,255,255,.04);
+}
+.nav-item.active{
+color:var(--gold-2);
+background:rgba(184,149,106,.1);
+}
+.nav-item.active::before{
+content:'';
+position:absolute;left:-1.25rem;top:50%;
+transform:translateY(-50%);
+width:3px;height:22px;
+background:var(--gold);
+border-radius:0 3px 3px 0;
+box-shadow:0 0 12px rgba(184,149,106,.6);
+}
+.nav-icon{
+width:20px;height:20px;flex-shrink:0;
+display:grid;place-items:center;
+}
+.nav-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-label{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.sidebar-footer{
+margin-top:1.5rem;
+padding-top:1.25rem;
+border-top:1px solid rgba(255,255,255,.08);
+display:flex;flex-direction:column;gap:1rem;
+}
+.lang-switch{
+display:flex;gap:3px;
+background:rgba(255,255,255,.06);
+padding:4px;border-radius:999px;
+}
+.lang-switch button{
+flex:1;
+padding:.45rem .3rem;
+border-radius:999px;
+font-size:.72rem;font-weight:600;letter-spacing:.08em;
+color:rgba(247,243,238,.6);
+transition:all .25s var(--ease);
+}
+.lang-switch button:hover{color:var(--ivory)}
+.lang-switch button.active{
+background:var(--gold);
+color:var(--ink);
+box-shadow:0 2px 8px rgba(184,149,106,.4);
+}
+
+.btn-cta{
+display:flex;align-items:center;justify-content:center;gap:.5rem;
+padding:.85rem 1rem;
+background:linear-gradient(135deg,var(--gold) 0%,var(--gold-2) 100%);
+color:var(--ink);
+border-radius:999px;
+font-size:.85rem;font-weight:600;letter-spacing:.02em;
+transition:all .3s var(--ease);
+box-shadow:0 4px 16px rgba(184,149,106,.3);
+}
+.btn-cta:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 24px rgba(184,149,106,.45);
+}
+
+/* Mobile header */
+.mobile-header{
+display:none;
+position:fixed;top:0;left:0;right:0;
+height:64px;
+background:rgba(10,22,40,.95);
+backdrop-filter:blur(16px);
+-webkit-backdrop-filter:blur(16px);
+z-index:99;
+padding:0 1rem;
+align-items:center;justify-content:space-between;
+border-bottom:1px solid rgba(255,255,255,.05);
+}
+.hamburger{
+width:42px;height:42px;
+display:flex;flex-direction:column;
+justify-content:center;align-items:center;gap:5px;
+border-radius:10px;
+transition:background .25s;
+}
+.hamburger:hover{background:rgba(255,255,255,.06)}
+.hamburger span{
+display:block;width:22px;height:2px;
+background:var(--ivory);
+border-radius:2px;
+transition:all .3s var(--ease);
+}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.brand-mini{
+font-family:var(--font-serif);font-size:.95rem;font-weight:600;
+color:var(--ivory);letter-spacing:.02em;
+}
+.lang-mobile{
+display:flex;gap:2px;
+background:rgba(255,255,255,.08);
+padding:3px;border-radius:999px;
+}
+.lang-mobile button{
+padding:.3rem .55rem;
+border-radius:999px;
+font-size:.68rem;font-weight:600;letter-spacing:.06em;
+color:rgba(247,243,238,.7);
+}
+.lang-mobile button.active{background:var(--gold);color:var(--ink)}
+
+.sidebar-overlay{
+display:none;
+position:fixed;inset:0;
+background:rgba(10,22,40,.5);
+backdrop-filter:blur(4px);
+z-index:98;
+opacity:0;
+transition:opacity .35s;
+}
+.sidebar-overlay.show{display:block;opacity:1}
+
+/* ============================================================
+4. MAIN AREA
+============================================================ */
+.main{
+position:relative;
+z-index:1;
+margin-left:var(--sidebar-w);
+min-height:100vh;
+padding:0;
+}
+
+.page{
+display:none;
+min-height:100vh;
+padding:0 clamp(1.25rem,4vw,3.5rem);
+}
+.page.active{
+display:block;
+animation:pageIn .55s var(--ease) both;
+}
+@keyframes pageIn{
+from{opacity:0;transform:translateY(24px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.page-inner{
+max-width:1100px;
+margin:0 auto;
+padding:clamp(3rem,6vw,5rem) 0;
+}
+
+.page-label{
+font-family:var(--font-mono);
+font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;
+color:var(--gold);
+margin-bottom:.65rem;
+display:inline-block;
+}
+.page-title{margin-bottom:1rem;letter-spacing:-.02em}
+.page-title em{font-style:italic;color:var(--gold)}
+.page-sub{
+font-size:1.02rem;
+max-width:680px;
+margin-bottom:2.5rem;
+color:var(--charcoal);
+}
+
+/* ============================================================
+5. HERO
+============================================================ */
+.hero{
+position:relative;
+min-height:80vh;
+display:flex;flex-direction:column;
+justify-content:center;
+padding:clamp(3rem,8vw,6rem) 0 clamp(2.5rem,5vw,4rem);
+}
+.hero-badge{
+display:inline-flex;align-items:center;gap:.5rem;
+font-family:var(--font-mono);
+font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+color:var(--gold);
+border:1px solid rgba(184,149,106,.35);
+border-radius:999px;
+padding:.4rem 1rem;
+margin-bottom:1.5rem;
+background:rgba(184,149,106,.06);
+}
+.hero-badge .dot{
+width:6px;height:6px;border-radius:50%;background:var(--gold);
+animation:pulse 2s infinite;
+}
+@keyframes pulse{
+0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(184,149,106,.5)}
+50%{opacity:.7;box-shadow:0 0 0 8px rgba(184,149,106,0)}
+}
+.hero h1{margin-bottom:1.25rem}
+.hero-sub{
+font-size:clamp(.98rem,1.5vw,1.12rem);
+max-width:620px;
+margin-bottom:2rem;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-bottom:3rem}
+.hero-stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+gap:1rem;
+padding-top:2rem;
+border-top:1px solid var(--ash);
+max-width:700px;
+}
+.hero-stat strong{
+display:block;
+font-family:var(--font-serif);
+font-size:clamp(1.6rem,2.5vw,2rem);
+color:var(--ink);
+font-weight:600;
+}
+.hero-stat span{
+font-size:.75rem;
+color:var(--muted);
+letter-spacing:.03em;
+}
+
+/* ============================================================
+6. BUTTONS
+============================================================ */
+.btn{
+display:inline-flex;align-items:center;gap:.55rem;
+padding:.85rem 1.65rem;
+border-radius:999px;
+font-family:var(--font-sans);
+font-size:.88rem;font-weight:500;
+letter-spacing:.02em;
+transition:all .35s var(--ease);
+cursor:pointer;
+border:1px solid transparent;
+white-space:nowrap;
+}
+.btn svg{width:16px;height:16px}
+.btn-primary{
+background:var(--ink);
+color:var(--ivory);
+}
+.btn-primary:hover{
+background:var(--ink-2);
+transform:translateY(-2px);
+box-shadow:0 10px 28px rgba(10,22,40,.25);
+}
+.btn-gold{
+background:linear-gradient(135deg,var(--gold) 0%,var(--gold-2) 100%);
+color:var(--ink);
+box-shadow:0 4px 16px rgba(184,149,106,.3);
+}
+.btn-gold:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 28px rgba(184,149,106,.45);
+}
+.btn-outline{
+border-color:var(--ash);
+color:var(--ink);
+}
+.btn-outline:hover{
+border-color:var(--gold);
+color:var(--gold);
+transform:translateY(-2px);
+}
+
+/* ============================================================
+7. CARDS & GRIDS
+============================================================ */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+
+.card{
+background:var(--white);
+border:1px solid var(--ash);
+border-radius:var(--radius-md);
+padding:1.75rem;
+transition:all .4s var(--ease);
+position:relative;
+overflow:hidden;
+}
+.card::before{
+content:'';
+position:absolute;top:0;left:0;
+width:100%;height:2px;
+background:var(--gold);
+transform:scaleX(0);
+transform-origin:left;
+transition:transform .5s var(--ease);
+}
+.card:hover{
+border-color:transparent;
+box-shadow:var(--shadow-lift);
+transform:translateY(-4px);
+}
+.card:hover::before{transform:scaleX(1)}
+
+.card-num{
+font-family:var(--font-mono);
+font-size:.7rem;color:var(--gold);
+letter-spacing:.1em;margin-bottom:.75rem;
+display:block;
+}
+.card h3{margin-bottom:.5rem}
+.card p{font-size:.9rem;line-height:1.65}
+
+.tags{
+display:flex;flex-wrap:wrap;gap:.4rem;
+margin-top:1rem;
+}
+.tag{
+font-size:.68rem;
+padding:.25rem .6rem;
+border-radius:999px;
+background:var(--ivory-2);
+color:var(--charcoal);
+font-weight:500;
+}
+
+/* ============================================================
+8. FEATURE PANEL
+============================================================ */
+.feature-panel{
+background:linear-gradient(135deg,var(--ink) 0%,var(--ink-2) 100%);
+color:var(--ivory);
+border-radius:var(--radius-lg);
+padding:clamp(1.75rem,4vw,2.75rem);
+position:relative;
+overflow:hidden;
+}
+.feature-panel::before{
+content:'';
+position:absolute;
+top:-100px;right:-100px;
+width:300px;height:300px;
+border-radius:50%;
+background:radial-gradient(circle,rgba(184,149,106,.15) 0%,transparent 70%);
+pointer-events:none;
+}
+.feature-panel h2{color:var(--ivory);margin-bottom:.75rem}
+.feature-panel p{color:rgba(247,243,238,.75)}
+
+/* ============================================================
+8b. HOME — NEW SECTIONS (intro, showcase, why, quote)
+============================================================ */
+.intro-block{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:clamp(2rem,5vw,4rem);
+align-items:center;
+margin-top:3rem;
+}
+.intro-block h2{margin-bottom:1rem}
+.intro-block p{margin-bottom:1rem;font-size:.96rem}
+.intro-block .btn{margin-top:.5rem}
+
+.intro-visual{
+position:relative;
+border-radius:var(--radius-lg);
+overflow:hidden;
+aspect-ratio:4/5;
+box-shadow:var(--shadow-lift);
+}
+.intro-visual img{
+width:100%;height:100%;object-fit:cover;
+transition:transform 1.2s var(--ease);
+}
+.intro-visual:hover img{transform:scale(1.04)}
+.intro-visual::after{
+content:'';
+position:absolute;inset:0;
+background:linear-gradient(to top,rgba(10,22,40,.3),transparent 50%);
+}
+
+.showcase-header{
+text-align:center;
+max-width:640px;
+margin:0 auto 2rem;
+}
+.showcase-header h2{margin-bottom:.75rem}
+.showcase-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:1.25rem;
+}
+.showcase-item{
+background:var(--white);
+border:1px solid var(--ash);
+border-radius:var(--radius-md);
+overflow:hidden;
+transition:all .4s var(--ease);
+display:flex;
+flex-direction:column;
+}
+.showcase-item:hover{
+border-color:transparent;
+transform:translateY(-5px);
+box-shadow:var(--shadow-lift);
+}
+.showcase-item img{
+width:100%;
+height:200px;
+object-fit:cover;
+transition:transform .8s var(--ease);
+}
+.showcase-item:hover img{transform:scale(1.06)}
+.showcase-body{padding:1.4rem 1.35rem}
+.showcase-body h4{
+font-family:var(--font-serif);
+font-size:1.05rem;
+font-weight:500;
+margin-bottom:.5rem;
+}
+.showcase-body p{font-size:.88rem;line-height:1.65}
+
+.why-block{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:2rem;
+align-items:center;
+margin-top:4rem;
+}
+.why-block h2{color:var(--ivory);margin-bottom:.75rem}
+.why-block p{color:rgba(247,243,238,.75);font-size:.96rem;margin-bottom:.9rem}
+.why-bullets{
+display:flex;flex-direction:column;
+gap:.6rem;margin-top:1rem;
+}
+.why-bullets li{
+display:flex;align-items:flex-start;gap:.65rem;
+font-size:.9rem;color:rgba(247,243,238,.85);
+line-height:1.5;
+}
+.why-bullets li::before{
+content:'✓';
+color:var(--gold);
+font-weight:700;
+flex-shrink:0;
+margin-top:.05rem;
+}
+.why-visual{
+border-radius:var(--radius-md);
+overflow:hidden;
+aspect-ratio:4/3;
+box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+.why-visual img{width:100%;height:100%;object-fit:cover}
+
+.quote-block{
+text-align:center;
+max-width:760px;
+margin:4rem auto 3rem;
+padding:2rem 1rem 0;
+position:relative;
+}
+.quote-block::before{
+content:'„';
+position:absolute;
+top:-1.5rem;left:50%;
+transform:translateX(-50%);
+font-family:var(--font-serif);
+font-size:6rem;
+color:var(--gold);
+opacity:.2;
+line-height:1;
+}
+.quote-block p{
+font-family:var(--font-serif);
+font-size:clamp(1.1rem,2vw,1.4rem);
+font-style:italic;
+color:var(--ink);
+line-height:1.5;
+margin-bottom:1.25rem;
+}
+.quote-block span{
+font-family:var(--font-mono);
+font-size:.72rem;
+color:var(--gold);
+letter-spacing:.12em;
+text-transform:uppercase;
+}
+
+/* ============================================================
+8c. MAP
+============================================================ */
+.map-section{
+margin-top:3rem;
+}
+.map-section h3{margin-bottom:1rem}
+.map-wrapper{
+position:relative;
+border-radius:var(--radius-md);
+overflow:hidden;
+box-shadow:var(--shadow-soft);
+border:1px solid var(--ash);
+aspect-ratio:16/9;
+background:var(--ivory-2);
+}
+.map-wrapper iframe{
+width:100%;height:100%;
+border:0;display:block;
+}
+.map-actions{
+margin-top:1rem;
+display:flex;
+flex-wrap:wrap;
+gap:.75rem;
+}
+
+/* ============================================================
+9. TEAM
+============================================================ */
+.team-card{
+background:var(--white);
+border:1px solid var(--ash);
+border-radius:var(--radius-md);
+padding:1.75rem;
+transition:all .4s var(--ease);
+}
+.team-card:hover{
+border-color:var(--gold);
+transform:translateY(-3px);
+box-shadow:var(--shadow-soft);
+}
+.team-avatar{
+width:56px;height:56px;border-radius:50%;
+background:linear-gradient(135deg,var(--ivory-2),var(--ash));
+color:var(--gold);
+display:grid;place-items:center;
+font-family:var(--font-serif);font-size:1.15rem;font-weight:600;
+margin-bottom:1.1rem;
+border:1px solid var(--ash);
+}
+.team-card h4{margin-bottom:.25rem}
+.team-role{
+font-size:.78rem;color:var(--gold);
+font-weight:500;margin-bottom:.6rem;
+}
+.team-card p{font-size:.85rem;line-height:1.6}
+
+/* ============================================================
+10. GALLERY
+============================================================ */
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+gap:1rem;
+}
+.gallery-item{
+position:relative;
+border-radius:var(--radius-md);
+overflow:hidden;
+aspect-ratio:4/3;
+cursor:pointer;
+background:var(--ash);
+}
+.gallery-item img{
+width:100%;height:100%;object-fit:cover;
+transition:transform .8s var(--ease),filter .5s;
+}
+.gallery-item:hover img{
+transform:scale(1.06);
+filter:brightness(.82);
+}
+.gallery-overlay{
+position:absolute;inset:0;
+display:flex;flex-direction:column;
+justify-content:flex-end;
+padding:1.15rem;
+background:linear-gradient(to top,rgba(10,22,40,.85),transparent 55%);
+opacity:0;
+transition:opacity .4s;
+}
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-cat{
+font-family:var(--font-mono);
+font-size:.62rem;letter-spacing:.12em;
+text-transform:uppercase;
+color:var(--gold);
+margin-bottom:.25rem;
+}
+.gallery-title{
+font-family:var(--font-serif);
+font-size:.95rem;color:var(--ivory);
+font-weight:500;
+}
+
+/* ============================================================
+11. FAQ
+============================================================ */
+.faq-item{
+background:var(--white);
+border:1px solid var(--ash);
+border-radius:var(--radius-md);
+margin-bottom:.75rem;
+overflow:hidden;
+transition:border-color .3s;
+}
+.faq-item[open]{border-color:var(--gold)}
+.faq-item summary{
+padding:1.15rem 1.5rem;
+cursor:pointer;
+font-weight:500;
+font-family:var(--font-serif);
+font-size:1.02rem;
+color:var(--ink);
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:1rem;
+list-style:none;
+transition:color .3s;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{
+content:'+';
+font-family:var(--font-sans);
+font-size:1.4rem;font-weight:300;
+color:var(--gold);
+transition:transform .3s var(--ease);
+flex-shrink:0;
+}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item summary:hover{color:var(--gold)}
+.faq-content{
+padding:0 1.5rem 1.25rem;
+color:var(--charcoal);
+font-size:.92rem;
+line-height:1.7;
+}
+
+/* ============================================================
+12. FORM
+============================================================ */
+.form{
+background:var(--white);
+border:1px solid var(--ash);
+border-radius:var(--radius-md);
+padding:2rem;
+}
+.form-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:1rem;
+}
+.form-group{margin-bottom:1rem;display:flex;flex-direction:column}
+.form-group.full{grid-column:1/-1}
+.form-group label{
+font-size:.78rem;font-weight:500;
+margin-bottom:.4rem;
+letter-spacing:.02em;
+}
+.form-group input,
+.form-group select,
+.form-group textarea{
+padding:.75rem 1rem;
+border:1px solid var(--ash);
+border-radius:var(--radius-sm);
+font-family:inherit;
+font-size:.9rem;
+background:var(--ivory);
+color:var(--ink);
+transition:border-color .3s,box-shadow .3s;
+width:100%;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+outline:none;
+border-color:var(--gold);
+box-shadow:0 0 0 3px rgba(184,149,106,.15);
+}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-feedback{
+display:none;
+margin-top:1rem;
+padding:.75rem 1rem;
+border-radius:var(--radius-sm);
+font-size:.85rem;
+}
+.form-feedback.success{
+display:block;
+background:rgba(45,106,79,.08);
+color:var(--success);
+border:1px solid rgba(45,106,79,.2);
+}
+.form-feedback.error{
+display:block;
+background:rgba(155,34,38,.06);
+color:var(--err);
+border:1px solid rgba(155,34,38,.2);
+}
+
+/* ============================================================
+13. CONTACT INFO
+============================================================ */
+.contact-list{
+display:flex;flex-direction:column;
+gap:1.25rem;margin-top:1.5rem;
+}
+.contact-item{
+display:flex;gap:1rem;align-items:flex-start;
+}
+.contact-icon{
+width:42px;height:42px;border-radius:50%;
+background:var(--ivory-2);
+color:var(--gold);
+display:grid;place-items:center;
+flex-shrink:0;
+transition:all .3s;
+}
+.contact-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.contact-item:hover .contact-icon{
+background:var(--gold);
+color:var(--white);
+}
+.contact-item strong{
+display:block;
+font-size:.82rem;
+margin-bottom:.15rem;
+}
+.contact-item span{font-size:.88rem;color:var(--charcoal)}
+
+/* ============================================================
+14. TESTIMONIALS NOTICE
+============================================================ */
+.notice-box{
+background:var(--white);
+border:1px solid var(--ash);
+border-radius:var(--radius-lg);
+padding:2.25rem;
+text-align:center;
+max-width:760px;
+margin:0 auto;
+position:relative;
+}
+.notice-box::before{
+content:'"';
+position:absolute;
+top:-10px;left:50%;
+transform:translateX(-50%);
+font-family:var(--font-serif);
+font-size:5rem;
+color:var(--gold);
+line-height:1;
+opacity:.3;
+}
+.notice-box p{
+font-size:.95rem;
+line-height:1.75;
+margin-bottom:1.25rem;
+}
+.criteria-list{
+display:flex;flex-wrap:wrap;
+gap:.6rem;justify-content:center;
+margin-top:1.25rem;
+}
+.criteria-list .tag{
+background:var(--ivory-2);
+padding:.4rem .9rem;
+font-size:.75rem;
+color:var(--charcoal);
+}
+
+/* ============================================================
+15. PRIVACY
+============================================================ */
+.prose{
+max-width:760px;
+margin:0 auto;
+}
+.prose h3{
+margin-top:2rem;
+margin-bottom:.75rem;
+color:var(--ink);
+font-size:1.15rem;
+}
+.prose p{margin-bottom:.9rem;font-size:.94rem;line-height:1.75}
+.prose ul{margin-left:1.25rem;margin-bottom:1rem}
+.prose li{list-style:disc;font-size:.94rem;color:var(--charcoal);margin-bottom:.35rem}
+
+/* ============================================================
+16. FOOTER
+============================================================ */
+.site-footer{
+margin-top:3rem;
+padding:2rem 0;
+border-top:1px solid var(--ash);
+font-size:.78rem;
+color:var(--muted);
+display:flex;
+flex-wrap:wrap;
+justify-content:space-between;
+gap:1rem;
+}
+.site-footer strong{color:var(--charcoal);font-weight:500}
+
+/* ============================================================
+17. REVEAL
+============================================================ */
+.reveal{
+opacity:0;
+transform:translateY(28px);
+transition:opacity .9s var(--ease),transform .9s var(--ease);
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}
+.reveal-d2{transition-delay:.2s}
+.reveal-d3{transition-delay:.3s}
+
+/* ============================================================
+18. RESPONSIVE
+============================================================ */
+@media(max-width:1023px){
+.sidebar{transform:translateX(-100%)}
+.sidebar.open{transform:translateX(0)}
+.mobile-header{display:flex}
+.main{margin-left:0;padding-top:64px}
+.page{padding:0 1.25rem}
+.intro-block,
+.why-block{grid-template-columns:1fr}
+.intro-visual{max-width:520px;margin:0 auto}
+.why-visual{max-width:100%}
+}
+
+@media(max-width:640px){
+.hero-actions{flex-direction:column;align-items:flex-start}
+.btn{width:100%;justify-content:center}
+.form{padding:1.25rem}
+.hero-stats{grid-template-columns:repeat(2,1fr)}
+.showcase-item img{height:180px}
+}
+
+/* Reduced motion /
+@media(prefers-reduced-motion:reduce){
+,::before,::after{
+animation-duration:.01ms!important;
+transition-duration:.01ms!important;
+scroll-behavior:auto!important;
+}
+#bg-canvas{display:none}
+.reveal{opacity:1;transform:none}
+}
+
+/* Focus visible */
+:focus-visible{
+outline:2px solid var(--gold);
+outline-offset:3px;
+border-radius:4px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+CANVAS BACKGROUND
+============================================================ -->
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<!-- ============================================================
+MOBILE HEADER
+============================================================ -->
+<header class="mobile-header">
+<button class="hamburger" id="hamburger" aria-label="Отвори меню">
+<span></span><span></span><span></span>
+</button>
+<div class="brand-mini">LDC · Sofia</div>
+<div class="lang-mobile" id="langMobile">
+<button data-lang="bg">BG</button>
+<button data-lang="en">EN</button>
+<button data-lang="pt">PT</button>
+</div>
+</header>
+
+<!-- ============================================================
+SIDEBAR
+============================================================ -->
+<aside class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<div class="brand">
+<div class="brand-mark">L</div>
+<div class="brand-text">
+<strong data-i18n="brand.name">Laser Dental Clinic</strong>
+<small data-i18n="brand.tag">София · България</small>
+</div>
+</div>
+</div>
+
+<nav class="sidebar-nav" id="sidebarNav" aria-label="Основна навигация">
+<button class="nav-item active" data-page="home">
+<span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+<span class="nav-label" data-i18n="nav.home">Начало</span>
+</button>
+<button class="nav-item" data-page="about">
+<span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+<span class="nav-label" data-i18n="nav.about">За нас</span>
+</button>
+<button class="nav-item" data-page="services">
+<span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+<span class="nav-label" data-i18n="nav.services">Услуги</span>
+</button>
+<button class="nav-item" data-page="team">
+<span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+<span class="nav-label" data-i18n="nav.team">Екип</span>
+</button>
+<button class="nav-item" data-page="gallery">
+<span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></span>
+<span class="nav-label" data-i18n="nav.gallery">Галерия</span>
+</button>
+<button class="nav-item" data-page="testimonials">
+<span class="nav-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+<span class="nav-label" data-i18n="nav.testimonials">Отзиви</span>
+</button>
+<button class="nav-item" data-page="contact">
+<span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+<span class="nav-label" data-i18n="nav.contact">Контакти</span>
+</button>
+<button class="nav-item" data-page="booking">
+<span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+<span class="nav-label" data-i18n="nav.booking">Запази час</span>
+</button>
+<button class="nav-item" data-page="faq">
+<span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+<span class="nav-label" data-i18n="nav.faq">ЧЗВ</span>
+</button>
+<button class="nav-item" data-page="privacy">
+<span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+<span class="nav-label" data-i18n="nav.privacy">Поверителност</span>
+</button>
+</nav>
+
+<div class="sidebar-footer">
+<div class="lang-switch" id="langSwitch">
+<button data-lang="bg" class="active">BG</button>
+<button data-lang="en">EN</button>
+<button data-lang="pt">PT</button>
+</div>
+<button class="btn-cta" data-page="booking">
+<span data-i18n="sidebar.cta">Запази час</span>
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</button>
+</div>
+</aside>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ============================================================
+MAIN CONTENT
+============================================================ -->
+<main class="main" id="main">
+
+<!-- ==================== HOME ==================== -->
+<section class="page active" data-page="home">
+<div class="page-inner">
+
+<!-- HERO -->
+<div class="hero">
+<span class="hero-badge">
+<span class="dot"></span>
+<span data-i18n="home.badge">Демонстрационен концепт · Convertix_studio</span>
+</span>
+<h1>
+<span data-i18n="home.title1">Прецизност с лазер.</span><br>
+<em data-i18n="home.title2">Човешка грижа.</em>
+</h1>
+<p class="hero-sub" data-i18n="home.sub">
+Минимално инвазивна дентална медицина в София, където най-съвременната лазерна технология среща спокойствието на клинично пространство, създадено за вашия комфорт.
+</p>
+<div class="hero-actions">
+<button class="btn btn-gold" data-page="booking">
+<span data-i18n="home.cta1">Запази час</span>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</button>
+<button class="btn btn-outline" data-page="services">
+<span data-i18n="home.cta2">Разгледай услугите</span>
+</button>
+</div>
+<div class="hero-stats">
+<div class="hero-stat">
+<strong>10+</strong>
+<span data-i18n="home.stat1">Клинични дисциплини</span>
+</div>
+<div class="hero-stat">
+<strong>7</strong>
+<span data-i18n="home.stat2">Високи технологии</span>
+</div>
+<div class="hero-stat">
+<strong>3</strong>
+<span data-i18n="home.stat3">Собствени протокола</span>
+</div>
+<div class="hero-stat">
+<strong>100%</strong>
+<span data-i18n="home.stat4">Дигитална диагностика</span>
+</div>
+</div>
+</div>
+
+<!-- NEW: INTRO (filosofia + imagem) -->
+<div class="intro-block reveal">
+<div>
+<span class="page-label" data-i18n="home.intro.label">Нашата философия</span>
+<h2 data-i18n="home.intro.title">Повече от клиника — център за прецизно орално здраве</h2>
+<p data-i18n="home.intro.p1">В Laser Dental Clinic вярваме, че денталната медицина не е просто лечение на зъби. Това е грижа за цялостното ви здраве, увереност и качество на живот. Затова всеки план, който създаваме, започва с разбиране — не само на клиничната картина, но и на вашите очаквания, страхове и ежедневие.</p>
+<p data-i18n="home.intro.p2">Използваме най-съвременни технологии — лазер WATERLASE, 3D CBCT диагностика, интраорално сканиране и фотобиомодулация — за да постигнем резултати, които са едновременно естетични, функционални и дълготрайни. Всеки етап е документиран и прозрачен, за да знаете какво се случва и защо.</p>
+<p data-i18n="home.intro.p3">Нашият екип от специалисти работи в синхрон, за да предложи цялостни решения — от превантивна грижа и лазерна терапия до пълна естетична рехабилитация. Независимо дали ви предстои рутинен преглед или сложно лечение, вие сте в ръцете на професионалисти, които поставят вашия комфорт на първо място.</p>
+<button class="btn btn-outline" data-page="about">
+<span data-i18n="home.intro.cta">Научете повече за нас</span>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</button>
+</div>
+<div class="intro-visual">
+<img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80&auto=format&fit=crop" alt="Laser Dental Clinic — интериор" loading="lazy" data-i18n-alt="home.intro.imageAlt">
+</div>
+</div>
+
+<!-- Feature cards -->
+<div class="grid-3" style="margin-top:3rem">
+<div class="card reveal">
+<span class="card-num">01</span>
+<h3 data-i18n="home.f1.title">Лазерна прецизност</h3>
+<p data-i18n="home.f1.desc">Технология WATERLASE за препариране без вибрации, без термичен шок и с максимално запазване на здравите тъкани.</p>
+</div>
+<div class="card reveal reveal-d1">
+<span class="card-num">02</span>
+<h3 data-i18n="home.f2.title">3D диагностика</h3>
+<p data-i18n="home.f2.desc">CBCT томография, интраорално сканиране и Diagnocam без радиация за пълна дигитална карта на оралното здраве.</p>
+</div>
+<div class="card reveal reveal-d2">
+<span class="card-num">03</span>
+<h3 data-i18n="home.f3.title">Функционален подход</h3>
+<p data-i18n="home.f3.desc">Собствени протоколи MFSP™ и BOSYNC™ за стабилност на захапката, ставите и дълготрайни резултати.</p>
+</div>
+<div class="card reveal reveal-d3">
+<span class="card-num">04</span>
+<h3 data-i18n="home.f4.title">Човешка грижа</h3>
+<p data-i18n="home.f4.desc">Спокойна атмосфера, обслужване на три езика и персонализиран подход към всеки пациент.</p>
+</div>
+</div>
+
+<!-- NEW: SHOWCASE (imagens + textos) -->
+<div style="margin-top:4rem">
+<div class="showcase-header reveal">
+<span class="page-label" data-i18n="home.showcase.label">Клинично изживяване</span>
+<h2 data-i18n="home.showcase.title">Технология, която се усеща в комфорта на всяка процедура</h2>
+<p data-i18n="home.showcase.sub">Зад всяка усмивка стои комбинация от наука, прецизност и емпатия.</p>
+</div>
+<div class="showcase-grid">
+<div class="showcase-item reveal">
+<img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=600&q=80&auto=format&fit=crop" alt="3D диагностика" loading="lazy">
+<div class="showcase-body">
+<h4 data-i18n="home.showcase.i1.title">Диагностика, която вижда невидимото</h4>
+<p data-i18n="home.showcase.i1.desc">CBCT 3D, Diagnocam и интраорално сканиране създават пълна и безрадиационна картина на вашето орално здраве.</p>
+</div>
+</div>
+<div class="showcase-item reveal reveal-d1">
+<img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80&auto=format&fit=crop" alt="Лазерно лечение" loading="lazy">
+<div class="showcase-body">
+<h4 data-i18n="home.showcase.i2.title">Лечение, което зачита тялото</h4>
+<p data-i18n="home.showcase.i2.desc">Лазерната технология замества традиционната бормашина, намалявайки травмата, дискомфорта и времето за възстановяване.</p>
+</div>
+</div>
+<div class="showcase-item reveal reveal-d2">
+<img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?w=600&q=80&auto=format&fit=crop" alt="Дигитално сканиране" loading="lazy">
+<div class="showcase-body">
+<h4 data-i18n="home.showcase.i3.title">Резултати, които издържат десетилетия</h4>
+<p data-i18n="home.showcase.i3.desc">Собствените функционални протоколи гарантират, че всяка реставрация работи в хармония с вашата захапка.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- NEW: WHY CHOOSE US -->
+<div class="feature-panel why-block reveal" style="margin-top:4rem">
+<div>
+<span class="page-label" data-i18n="home.why.label">Защо Laser Dental Clinic</span>
+<h2 data-i18n="home.why.title">Избор, който променя отношението ви към зъболекаря</h2>
+<p data-i18n="home.why.p1">Знаем, че посещението при зъболекар може да бъде повод за безпокойство. Затова проектирахме всяка подробност от изживяването — от първия контакт до следлечебния период — така, че да се чувствате сигурни, информирани и добре обгрижени.</p>
+<p data-i18n="home.why.p2">Тук всяко клинично решение се обяснява на разбираем език. Няма бързане, няма изненади. Само ясен, прозрачен план, създаден специално за вас.</p>
+<ul class="why-bullets">
+<li data-i18n="home.why.b1">Пълна първоначална консултация</li>
+<li data-i18n="home.why.b2">Мултидисциплинарен екип на три езика</li>
+<li data-i18n="home.why.b3">Лазерни технологии и 3D диагностика, интегрирани в грижата</li>
+<li data-i18n="home.why.b4">Собствени протоколи с гаранция за стабилност</li>
+<li data-i18n="home.why.b5">Клинично пространство с приветлив и уединен дизайн</li>
+</ul>
+</div>
+<div class="why-visual">
+<img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80&auto=format&fit=crop" alt="Laser Dental Clinic — рецепция" loading="lazy">
+</div>
+</div>
+
+<!-- NEW: QUOTE -->
+<div class="quote-block reveal">
+<p data-i18n="home.quote.text">„Истинската прецизност не е само в инструментите, които използваме, а в начина, по който изслушваме всеки пациент.“</p>
+<span data-i18n="home.quote.author">— Философия Laser Dental Clinic</span>
+</div>
+
+<!-- CTA Panel -->
+<div class="feature-panel reveal">
+<h2 data-i18n="home.panel.title">Готови ли сте за нова представа за денталната медицина?</h2>
+<p data-i18n="home.panel.sub">От безплатната първоначална консултация до цялостна рехабилитация — всеки етап е планиран с прецизност и прозрачност.</p>
+<div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem">
+<button class="btn btn-gold" data-page="booking">
+<span data-i18n="home.panel.cta">Запази консултация</span>
+</button>
+<button class="btn" style="border:1px solid rgba(247,243,238,.25);color:var(--ivory)" data-page="contact">
+<span data-i18n="home.panel.cta2">Свържи се с нас</span>
+</button>
+</div>
+</div>
+
+<footer class="site-footer">
+<span data-i18n="footer.copy">© 2025 Convertix_studio. Демонстрационен концепт.</span>
+<span data-i18n="footer.credit">Дизайн и разработка от Convertix_studio</span>
+</footer>
+</div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section class="page" data-page="about">
+<div class="page-inner">
+<span class="page-label" data-i18n="about.label">За нас</span>
+<h2 class="page-title" data-i18n="about.title">Клиника, в която прецизността среща спокойствието</h2>
+<p class="page-sub" data-i18n="about.sub">Laser Dental Clinic е концепция за луксозна дентална медицина в София, фокусирана върху минимално инвазивни лечения, 3D диагностика и собствени функционални протоколи.</p>
+
+<div class="grid-2">
+<div class="card reveal">
+<span class="card-num">01</span>
+<h3 data-i18n="about.v1.title">Прецизност</h3>
+<p data-i18n="about.v1.desc">Работим с WATERLASE лазер, CBCT томография с ниска доза, интраорално сканиране и фотобиомодулация — интегрирани в подход, който третира устата като част от цялостна биомеханична система.</p>
+</div>
+<div class="card reveal reveal-d1">
+<span class="card-num">02</span>
+<h3 data-i18n="about.v2.title">Прозрачност</h3>
+<p data-i18n="about.v2.desc">Всеки диагностичен етап е документиран — с 3D реконструкции, фотопротоколи и дигитален план, който можете да прегледате и обсъдите с нас.</p>
+</div>
+<div class="card reveal reveal-d2">
+<span class="card-num">03</span>
+<h3 data-i18n="about.v3.title">Комфорт</h3>
+<p data-i18n="about.v3.desc">Интериорът, музиката, осветлението и темпото на всяка процедура са проектирани така, че да намалят тревожността и да осигурят спокойно изживяване.</p>
+</div>
+<div class="card reveal reveal-d3">
+<span class="card-num">04</span>
+<h3 data-i18n="about.v4.title">Наука</h3>
+<p data-i18n="about.v4.desc">Използваме протоколи, базирани на доказателства — MFSP™, BOSYNC™ и Initial Therapy — които гарантират предвидимост и дълготрайна стабилност на резултатите.</p>
+</div>
+</div>
+
+<div class="hero-stats" style="margin-top:3rem">
+<div class="hero-stat"><strong>10+</strong><span data-i18n="about.s1">Специалности</span></div>
+<div class="hero-stat"><strong>7</strong><span data-i18n="about.s2">Технологии</span></div>
+<div class="hero-stat"><strong>0</strong><span data-i18n="about.s3">Радиация при скрининг</span></div>
+<div class="hero-stat"><strong>3</strong><span data-i18n="about.s4">Езика на обслужване</span></div>
+</div>
+
+<footer class="site-footer">
+<span data-i18n="footer.copy">© 2025 Convertix_studio. Демонстрационен концепт.</span>
+</footer>
+</div>
+</section>
+
+<!-- ==================== SERVICES ==================== -->
+<section class="page" data-page="services">
+<div class="page-inner">
+<span class="page-label" data-i18n="services.label">Услуги</span>
+<h2 class="page-title" data-i18n="services.title">Специализирани грижи на едно място</h2>
+<p class="page-sub" data-i18n="services.sub">Десет клинични дисциплини, обхващащи целия спектър на съвременната дентална медицина — от превенция до пълна рехабилитация.</p>
+<div class="grid-2" id="servicesGrid"></div>
+</div>
+</section>
+
+<!-- ==================== TEAM ==================== -->
+<section class="page" data-page="team">
+<div class="page-inner">
+<span class="page-label" data-i18n="team.label">Екип</span>
+<h2 class="page-title" data-i18n="team.title">Специалисти, посветени на всеки детайл</h2>
+<p class="page-sub" data-i18n="team.sub">Илюстративни клинични профили, представящи мултидисциплинарната структура на клиниката.</p>
+<div class="grid-2" id="teamGrid"></div>
+</div>
+</section>
+
+<!-- ==================== GALLERY ==================== -->
+<section class="page" data-page="gallery">
+<div class="page-inner">
+<span class="page-label" data-i18n="gallery.label">Галерия</span>
+<h2 class="page-title" data-i18n="gallery.title">Пространства и технологии</h2>
+<p class="page-sub" data-i18n="gallery.sub">Поглед към клиничните среди, оборудването и зоните за посрещане.</p>
+<div class="gallery-grid" id="galleryGrid"></div>
+</div>
+</section>
+
+<!-- ==================== TESTIMONIALS ==================== -->
+<section class="page" data-page="testimonials">
+<div class="page-inner">
+<span class="page-label" data-i18n="testimonials.label">Отзиви</span>
+<h2 class="page-title" data-i18n="testimonials.title">Ангажимент към автентичността</h2>
+<p class="page-sub" data-i18n="testimonials.sub">Този сайт е демонстрационен концепт. В съответствие с етичните принципи на Convertix_studio не публикуваме измислени отзиви или симулирани оценки.</p>
+<div class="notice-box reveal">
+<p data-i18n="testimonials.notice">Интеграцията с Google Reviews ще бъде активирана след официалното въвеждане в експлоатация на клиниката. Всички бъдещи отзиви ще бъдат автентични, верифицирани и без модерация.</p>
+<div class="criteria-list" id="criteriaList"></div>
+</div>
+</div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section class="page" data-page="contact">
+<div class="page-inner">
+<span class="page-label" data-i18n="contact.label">Контакти</span>
+<h2 class="page-title" data-i18n="contact.title">Нека поговорим за вашата усмивка</h2>
+<p class="page-sub" data-i18n="contact.sub">Свържете се с нас по телефон, имейл или чрез формата. Отговаряме в рамките на един работен ден.</p>
+
+<div class="grid-2">
+<div>
+<div class="contact-list">
+<div class="contact-item">
+<div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+<div><strong data-i18n="contact.addressLabel">Адрес</strong><span>ул. „Чумерна“ 12, 1000 София, България</span></div>
+</div>
+<div class="contact-item">
+<div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+<div><strong data-i18n="contact.emailLabel">Имейл</strong><span>info@laserdentalclinic-bg.com</span></div>
+</div>
+<div class="contact-item">
+<div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+<div><strong data-i18n="contact.phoneLabel">Телефон</strong><span>+359 895 770 544</span></div>
+</div>
+<div class="contact-item">
+<div class="contact-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+<div><strong data-i18n="contact.hoursLabel">Работно време</strong><span data-i18n="contact.hours">Понеделник – Петък: 09:00 – 19:00</span></div>
+</div>
+</div>
+</div>
+<div>
+<form class="form" id="contactForm" novalidate>
+<div class="form-group">
+<label for="c-name" data-i18n="form.name">Име и фамилия</label>
+<input type="text" id="c-name" required data-i18n-placeholder="form.namePh" placeholder="Вашето име">
+</div>
+<div class="form-group">
+<label for="c-email" data-i18n="form.email">Имейл</label>
+<input type="email" id="c-email" required data-i18n-placeholder="form.emailPh" placeholder="imeil@primer.bg">
+</div>
+<div class="form-group">
+<label for="c-message" data-i18n="form.message">Съобщение</label>
+<textarea id="c-message" required data-i18n-placeholder="form.messagePh" placeholder="Опишете накратко нуждата си"></textarea>
+</div>
+<button type="submit" class="btn btn-gold" style="width:100%;justify-content:center">
+<span data-i18n="form.send">Изпрати съобщение</span>
+</button>
+<div class="form-feedback" id="contactFeedback"></div>
+</form>
+</div>
+</div>
+
+<!-- NEW: MAP -->
+<div class="map-section reveal">
+<h3 data-i18n="contact.mapTitle">Как да ни намерите</h3>
+<div class="map-wrapper">
+<iframe
+src="https://maps.google.com/maps?q=ul.%20Chumerna%2012%2C%201000%20Sofia%2C%20Bulgaria&t=&z=16&ie=UTF8&iwloc=&output=embed"
+loading="lazy"
+referrerpolicy="no-referrer-when-downgrade"
+title="Laser Dental Clinic — Sofia"
+allowfullscreen>
+</iframe>
+</div>
+<div class="map-actions">
+<a href="https://maps.app.goo.gl/vNryZYfWJqmxrcvy8" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+<span data-i18n="contact.openMaps">Отвори в Google Maps</span>
+</a>
+</div>
+</div>
+
+<footer class="site-footer">
+<span data-i18n="footer.copy">© 2025 Convertix_studio. Демонстрационен концепт.</span>
+</footer>
+</div>
+</section>
+
+<!-- ==================== BOOKING ==================== -->
+<section class="page" data-page="booking">
+<div class="page-inner">
+<span class="page-label" data-i18n="booking.label">Запази час</span>
+<h2 class="page-title" data-i18n="booking.title">Резервирайте своята консултация</h2>
+<p class="page-sub" data-i18n="booking.sub">Попълнете формата по-долу и ние ще се свържем с вас, за да потвърдим удобен час.</p>
+
+<form class="form" id="bookingForm" novalidate style="max-width:760px;margin:0 auto">
+<div class="form-grid">
+<div class="form-group">
+<label for="b-name" data-i18n="form.name">Име и фамилия</label>
+<input type="text" id="b-name" required data-i18n-placeholder="form.namePh" placeholder="Вашето име">
+</div>
+<div class="form-group">
+<label for="b-phone" data-i18n="form.phone">Телефон</label>
+<input type="tel" id="b-phone" required data-i18n-placeholder="form.phonePh" placeholder="+359 ...">
+</div>
+<div class="form-group full">
+<label for="b-email" data-i18n="form.email">Имейл</label>
+<input type="email" id="b-email" required data-i18n-placeholder="form.emailPh" placeholder="imeil@primer.bg">
+</div>
+<div class="form-group full">
+<label for="b-service" data-i18n="booking.serviceLabel">Желана услуга</label>
+<select id="b-service" required>
+<option value="" data-i18n="booking.servicePlaceholder">Изберете услуга</option>
+</select>
+</div>
+<div class="form-group full">
+<label for="b-date" data-i18n="booking.dateLabel">Предпочитана дата</label>
+<input type="date" id="b-date">
+</div>
+<div class="form-group full">
+<label for="b-message" data-i18n="booking.messageLabel">Допълнителни бележки</label>
+<textarea id="b-message" data-i18n-placeholder="booking.messagePh" placeholder="Всичко, което трябва да знаем предварително"></textarea>
+</div>
+</div>
+<button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:.5rem">
+<span data-i18n="booking.submit">Изпрати заявка</span>
+</button>
+<div class="form-feedback" id="bookingFeedback"></div>
+</form>
+</div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section class="page" data-page="faq">
+<div class="page-inner">
+<span class="page-label" data-i18n="faq.label">ЧЗВ</span>
+<h2 class="page-title" data-i18n="faq.title">Често задавани въпроси</h2>
+<p class="page-sub" data-i18n="faq.sub">Отговори на най-честите въпроси на нашите пациенти.</p>
+<div id="faqList"></div>
+</div>
+</section>
+
+<!-- ==================== PRIVACY ==================== -->
+<section class="page" data-page="privacy">
+<div class="page-inner">
+<span class="page-label" data-i18n="privacy.label">Поверителност</span>
+<h2 class="page-title" data-i18n="privacy.title">Политика за поверителност</h2>
+<div class="prose" id="privacyBody"></div>
+</div>
+</section>
+
+</main>
+
+<script>
+/* ============================================================
+TRANSLATIONS
+============================================================ */
+const translations = {
+bg: {
+meta: {
+title: "Laser Dental Clinic — София | Прецизна лазерна дентална медицина",
+desc: "Лазерна дентална клиника в София. Прецизна лазерна медицина, 3D диагностика и персонализирани грижи за оралното здраве."
+},
+brand: { name: "Laser Dental Clinic", tag: "София · България" },
+nav: {
+home: "Начало", about: "За нас", services: "Услуги", team: "Екип",
+gallery: "Галерия", testimonials: "Отзиви", contact: "Контакти",
+booking: "Запази час", faq: "ЧЗВ", privacy: "Поверителност"
+},
+sidebar: { cta: "Запази час" },
+footer: {
+copy: "© 2025 Convertix_studio. Демонстрационен концепт. Всички права запазени.",
+credit: "Дизайн и разработка от Convertix_studio"
+},
+home: {
+badge: "Демонстрационен концепт · Convertix_studio",
+title1: "Прецизност с лазер.", title2: "Човешка грижа.",
+sub: "Минимално инвазивна дентална медицина в София, където най-съвременната лазерна технология среща спокойствието на клинично пространство, създадено за вашия комфорт.",
+cta1: "Запази час", cta2: "Разгледай услугите",
+stat1: "Клинични дисциплини", stat2: "Високи технологии",
+stat3: "Собствени протокола", stat4: "Дигитална диагностика",
+intro: {
+label: "Нашата философия",
+title: "Повече от клиника — център за прецизно орално здраве",
+p1: "В Laser Dental Clinic вярваме, че денталната медицина не е просто лечение на зъби. Това е грижа за цялостното ви здраве, увереност и качество на живот. Затова всеки план, който създаваме, започва с разбиране — не само на клиничната картина, но и на вашите очаквания, страхове и ежедневие.",
+p2: "Използваме най-съвременни технологии — лазер WATERLASE, 3D CBCT диагностика, интраорално сканиране и фотобиомодулация — за да постигнем резултати, които са едновременно естетични, функционални и дълготрайни. Всеки етап е документиран и прозрачен, за да знаете какво се случва и защо.",
+p3: "Нашият екип от специалисти работи в синхрон, за да предложи цялостни решения — от превантивна грижа и лазерна терапия до пълна естетична рехабилитация. Независимо дали ви предстои рутинен преглед или сложно лечение, вие сте в ръцете на професионалисти, които поставят вашия комфорт на първо място.",
+cta: "Научете повече за нас",
+imageAlt: "Интериор на Laser Dental Clinic"
+},
+f1: { title: "Лазерна прецизност", desc: "Технология WATERLASE за препариране без вибрации, без термичен шок и с максимално запазване на здравите тъкани." },
+f2: { title: "3D диагностика", desc: "CBCT томография, интраорално сканиране и Diagnocam без радиация за пълна дигитална карта на оралното здраве." },
+f3: { title: "Функционален подход", desc: "Собствени протоколи MFSP™ и BOSYNC™ за стабилност на захапката, ставите и дълготрайни резултати." },
+f4: { title: "Човешка грижа", desc: "Спокойна атмосфера, обслужване на три езика и персонализиран подход към всеки пациент." },
+showcase: {
+label: "Клинично изживяване",
+title: "Технология, която се усеща в комфорта на всяка процедура",
+sub: "Зад всяка усмивка стои комбинация от наука, прецизност и емпатия.",
+i1: { title: "Диагностика, която вижда невидимото", desc: "CBCT 3D, Diagnocam и интраорално сканиране създават пълна и безрадиационна картина на вашето орално здраве." },
+i2: { title: "Лечение, което зачита тялото", desc: "Лазерната технология замества традиционната бормашина, намалявайки травмата, дискомфорта и времето за възстановяване." },
+i3: { title: "Резултати, които издържат десетилетия", desc: "Собствените функционални протоколи гарантират, че всяка реставрация работи в хармония с вашата захапка." }
+},
+why: {
+label: "Защо Laser Dental Clinic",
+title: "Избор, който променя отношението ви към зъболекаря",
+p1: "Знаем, че посещението при зъболекар може да бъде повод за безпокойство. Затова проектирахме всяка подробност от изживяването — от първия контакт до следлечебния период — така, че да се чувствате сигурни, информирани и добре обгрижени.",
+p2: "Тук всяко клинично решение се обяснява на разбираем език. Няма бързане, няма изненади. Само ясен, прозрачен план, създаден специално за вас.",
+b1: "Пълна първоначална консултация",
+b2: "Мултидисциплинарен екип на три езика",
+b3: "Лазерни технологии и 3D диагностика, интегрирани в грижата",
+b4: "Собствени протоколи с гаранция за стабилност",
+b5: "Клинично пространство с приветлив и уединен дизайн"
+},
+quote: {
+text: "„Истинската прецизност не е само в инструментите, които използваме, а в начина, по който изслушваме всеки пациент.“",
+author: "— Философия Laser Dental Clinic"
+},
+panel: {
+title: "Готови ли сте за нова представа за денталната медицина?",
+sub: "От безплатната първоначална консултация до цялостна рехабилитация — всеки етап е планиран с прецизност и прозрачност.",
+cta: "Запази консултация", cta2: "Свържи се с нас"
+}
+},
+about: {
+label: "За нас",
+title: "Клиника, в която прецизността среща спокойствието",
+sub: "Laser Dental Clinic е концепция за луксозна дентална медицина в София, фокусирана върху минимално инвазивни лечения, 3D диагностика и собствени функционални протоколи.",
+v1: { title: "Прецизност", desc: "Работим с WATERLASE лазер, CBCT томография с ниска доза, интраорално сканиране и фотобиомодулация — интегрирани в подход, който третира устата като част от цялостна биомеханична система." },
+v2: { title: "Прозрачност", desc: "Всеки диагностичен етап е документиран — с 3D реконструкции, фотопротоколи и дигитален план, който можете да прегледате и обсъдите с нас." },
+v3: { title: "Комфорт", desc: "Интериорът, музиката, осветлението и темпото на всяка процедура са проектирани така, че да намалят тревожността и да осигурят спокойно изживяване." },
+v4: { title: "Наука", desc: "Използваме протоколи, базирани на доказателства — MFSP™, BOSYNC™ и Initial Therapy — които гарантират предвидимост и дълготрайна стабилност на резултатите." },
+s1: "Специалности", s2: "Технологии", s3: "Радиация при скрининг", s4: "Езика на обслужване"
+},
+services: {
+label: "Услуги",
+title: "Специализирани грижи на едно място",
+sub: "Десет клинични дисциплини, обхващащи целия спектър на съвременната дентална медицина — от превенция до пълна рехабилитация.",
+items: [
+{ name: "Пародонтология", desc: "Лазерно-асистирано лечение на гингивит и пародонтит с пълна микробиална деконтаминация на пародонталните джобове.", tags: ["WATERLASE","PBM","Diagnocam"] },
+{ name: "Възстановителна дентална медицина", desc: "Микро-инвазивно възстановяване на твърдите зъбни тъкани чрез лазерна прецизност и висок клас керамика.", tags: ["WATERLASE","3D Scanner","Diagnocam"] },
+{ name: "Ендодонтия", desc: "Прецизно кореново лечение под операционен микроскоп с лазерно дезинфекциране на сложната корено-канална анатомия.", tags: ["CBCT","WATERLASE","PBM"] },
+{ name: "Ортодонтия", desc: "Съвременна дигитално планирана ортодонтия с прозрачни алайнери и самолигиращи естетични системи.", tags: ["3D Scanner","CBCT","Functional Diagnostics"] },
+{ name: "Функционална ортодонтия и гнатология", desc: "Комплексен биомеханичен анализ на темпоромандибуларните стави, мускулния тонус, дихателните пътища и позата.", tags: ["Functional Diagnostics","CBCT","PBM"] },
+{ name: "Протетика и естетична рехабилитация", desc: "Циркониеви и прес-керамични фасети, коронки и мостове с индивидуален микро-релеф и естествена транслуцентност.", tags: ["3D Scanner","Functional Diagnostics","CBCT"] },
+{ name: "Орална хирургия", desc: "Атравматични екстракции, френулотомия и костни корекции с лазерен скалпел за ускорено зарастване без шевове.", tags: ["WATERLASE","PBM","CBCT"] },
+{ name: "Имплантология", desc: "Премиум титаниеви и керамични импланти с навигационни 3D водачи за безопасно и дълготрайно заместване на зъби.", tags: ["CBCT","WATERLASE","3D Scanner","PBM"] },
+{ name: "Детска дентална медицина", desc: "Лечение на детски кариеси с хидрокинетичен лазер без механични вибрации и с намалена нужда от инжекционна анестезия.", tags: ["WATERLASE","Diagnocam","PBM"] },
+{ name: "Спортна стоматология", desc: "Индивидуални многослойни предпазни шини и гнатологична стабилизация за професионални и любителски спортисти.", tags: ["3D Scanner","Functional Diagnostics"] }
+]
+},
+team: {
+label: "Екип",
+title: "Специалисти, посветени на всеки детайл",
+sub: "Илюстративни клинични профили, представящи мултидисциплинарната структура на клиниката.",
+items: [
+{ role: "Главен дентален лекар", focus: "Лазерна дентална медицина и гнатология" },
+{ role: "Пародонтолог и имплантолог", focus: "Пародонтология и 3D навигирано имплантиране" },
+{ role: "Микроскопски ендодонтист", focus: "Комплексно кореново лечение" },
+{ role: "Ортодонт", focus: "Прозрачни алайнери и функционална ортодонтия" },
+{ role: "Клиничен хигиенист", focus: "Превенция и пародонтална поддръжка" }
+ ]
+},
+gallery: {
+label: "Галерия",
+title: "Пространства и технологии",
+sub: "Поглед към клиничните среди, оборудването и зоните за посрещане.",
+items: [
+{ cat: "Пространства", title: "Рецепция и лоби" },
+{ cat: "Технологии", title: "Лазерна конзола" },
+{ cat: "Пространства", title: "Зала за изчакване" },
+{ cat: "Технологии", title: "3D изображения" },
+{ cat: "Кабинети", title: "Клиничен кабинет" },
+{ cat: "Технологии", title: "Дигитално сканиране" },
+{ cat: "Пространства", title: "Стерилизационен сектор" },
+{ cat: "Кабинети", title: "Клинично оборудване" }
+ ]
+},
+testimonials: {
+label: "Отзиви",
+title: "Ангажимент към автентичността",
+sub: "Този сайт е демонстрационен концепт. В съответствие с етичните принципи на Convertix_studio не публикуваме измислени отзиви или симулирани оценки.",
+notice: "Интеграцията с Google Reviews ще бъде активирана след официалното въвеждане в експлоатация на клиниката. Всички бъдещи отзиви ще бъдат автентични, верифицирани и без модерация.",
+criteria: ["Верифицирани автентични отзиви","Комфорт при лазерни процедури","Проследяване на резултатите","Пълна прозрачност"]
+},
+contact: {
+label: "Контакти",
+title: "Нека поговорим за вашата усмивка",
+sub: "Свържете се с нас по телефон, имейл или чрез формата. Отговаряме в рамките на един работен ден.",
+addressLabel: "Адрес", emailLabel: "Имейл",
+phoneLabel: "Телефон", hoursLabel: "Работно време",
+hours: "Понеделник – Петък: 09:00 – 19:00",
+mapTitle: "Как да ни намерите",
+openMaps: "Отвори в Google Maps"
+},
+booking: {
+label: "Запази час",
+title: "Резервирайте своята консултация",
+sub: "Попълнете формата по-долу и ние ще се свържем с вас, за да потвърдим удобен час.",
+serviceLabel: "Желана услуга",
+servicePlaceholder: "Изберете услуга",
+dateLabel: "Предпочитана дата",
+messageLabel: "Допълнителни бележки",
+messagePh: "Всичко, което трябва да знаем предварително",
+submit: "Изпрати заявка"
+},
+form: {
+name: "Име и фамилия", namePh: "Вашето име",
+email: "Имейл", emailPh: "imeil@primer.bg",
+phone: "Телефон", phonePh: "+359 ...",
+message: "Съобщение", messagePh: "Опишете накратко нуждата си",
+send: "Изпрати съобщение",
+success: "Благодарим! Вашето съобщение беше изпратено успешно. Ще се свържем с вас скоро.",
+error: "Моля, попълнете всички задължителни полета коректно."
+},
+faq: {
+label: "ЧЗВ",
+title: "Често задавани въпроси",
+sub: "Отговори на най-честите въпроси на нашите пациенти.",
+items: [
+{ q: "Какво представлява лазерната дентална медицина?", a: "Лазерната дентална медицина използва прецизни светлинни импулси вместо традиционни бормашини за препариране, дезинфекция и лечение на меки тъкани. Това позволява минимално инвазивни процедури с по-малко дискомфорт и по-бързо възстановяване." },
+{ q: "Болезнено ли е лечението с лазер?", a: "Процедурите с лазер са значително по-щадящи от конвенционалните. Много пациенти съобщават за минимален или никакъв дискомфорт, а в редица случаи лечението може да се проведе без местна анестезия." },
+{ q: "Колко посещения са необходими?", a: "Броят на посещенията зависи от конкретния клиничен случай. След първоначалната диагностика ще получите ясен план с етапи, продължителност и очакван резултат." },
+{ q: "Приемате ли здравни осигуровки?", a: "За информация относно здравни осигуровки и начини на плащане, моля свържете се директно с рецепцията на клиниката." },
+{ q: "Как да запазя час?", a: "Можете да използвате формата в раздел „Запази час“, да ни позвъните или да ни изпратите имейл. Ще потвърдим часа в рамките на един работен ден." },
+{ q: "На какви езици обслужвате пациенти?", a: "Обслужваме пациенти на български, английски и португалски език." },
+{ q: "Лекувате ли деца?", a: "Да, имаме специализиран подход към децата, базиран на минимално инвазивни техники и приятелска атмосфера." },
+{ q: "Какъв е диагностичният процес?", a: "Първото посещение включва 3D CBCT томография, интраорално сканиране, Diagnocam анализ без радиация и клиничен преглед. Всички данни се интегрират в дигитален план." },
+{ q: "Как гарантирате хигиена?", a: "Работим по строги европейски протоколи за стерилизация с клас B автоклави и пълно проследяване на партидите." },
+{ q: "Има ли паркинг в близост?", a: "За информация относно паркиране и достъп, моля свържете се с рецепцията на клиниката." }
+ ]
+},
+privacy: {
+label: "Поверителност",
+title: "Политика за поверителност",
+sections: [
+{ h: "1. Администратор на лични данни", p: "Администратор на личните данни е Laser Dental Clinic, ул. „Чумерна“ 12, 1000 София, България. За въпроси относно обработката на лични данни се свързвайте с info@laserdentalclinic-bg.com." },
+{ h: "2. Какви данни събираме", p: "Събираме лични данни, които доброволно предоставяте чрез нашите форми (име, имейл, телефон, съобщение), както и техническа информация за използването на сайта (бисквитки, IP адрес)." },
+{ h: "3. Цели на обработката", p: "Обработваме данните с цел отговор на запитвания, организиране на консултации, предоставяне на клинични услуги и подобряване на потребителското изживяване." },
+{ h: "4. Правно основание", p: "Обработката се основава на вашето съгласие, изпълнение на договор, законово задължение или легитимен интерес на администратора." },
+{ h: "5. Съхранение и защита", p: "Съхраняваме личните данни за периода, необходим за постигане на целите, за които са събрани, при спазване на приложимото законодателство. Прилагаме технически и организационни мерки за защита." },
+{ h: "6. Вашите права", p: "Имате право на достъп, коригиране, изтриване, ограничаване на обработката, пренос на данни и възражение. Можете да упражните правата си, като се свържете с нас." },
+{ h: "7. Бисквитки", p: "Сайтът може да използва бисквитки за подобряване на функционалността и анализа на трафика. Можете да управлявате бисквитките чрез настройките на браузъра си." },
+{ h: "8. Контакт", p: "За всякакви въпроси относно тази политика се свързвайте с нас на info@laserdentalclinic-bg.com." }
+ ]
+}
+},
+
+en: {
+meta: {
+title: "Laser Dental Clinic — Sofia | Precision Laser Dentistry",
+desc: "Laser dental clinic in Sofia. Precision laser medicine, 3D diagnostics and personalized oral health care."
+},
+brand: { name: "Laser Dental Clinic", tag: "Sofia · Bulgaria" },
+nav: {
+home: "Home", about: "About", services: "Services", team: "Team",
+gallery: "Gallery", testimonials: "Reviews", contact: "Contact",
+booking: "Book Appointment", faq: "FAQ", privacy: "Privacy"
+},
+sidebar: { cta: "Book Appointment" },
+footer: {
+copy: "© 2025 Convertix_studio. Demonstration concept. All rights reserved.",
+credit: "Design & development by Convertix_studio"
+},
+home: {
+badge: "Demonstration concept · Convertix_studio",
+title1: "Laser precision.", title2: "Human care.",
+sub: "Minimally invasive dental medicine in Sofia, where state-of-the-art laser technology meets the serenity of a clinical space designed for your comfort.",
+cta1: "Book Appointment", cta2: "Explore Services",
+stat1: "Clinical disciplines", stat2: "Advanced technologies",
+stat3: "Proprietary protocols", stat4: "Digital diagnostics",
+intro: {
+label: "Our philosophy",
+title: "More than a clinic — a center for precise oral health",
+p1: "At Laser Dental Clinic, we believe dental medicine is not just about treating teeth. It is about caring for your overall health, confidence and quality of life. Every plan we create begins with understanding — not only the clinical picture, but also your expectations, fears and daily life.",
+p2: "We use state-of-the-art technologies — WATERLASE laser, 3D CBCT diagnostics, intraoral scanning and photobiomodulation — to achieve results that are simultaneously aesthetic, functional and long-lasting. Every step is documented and transparent, so you know exactly what is happening and why.",
+p3: "Our team of specialists works in harmony to deliver complete solutions — from preventive care and laser therapy to full aesthetic rehabilitation. Whether you are due for a routine check-up or complex treatment, you are in the hands of professionals who put your comfort first.",
+cta: "Learn more about us",
+imageAlt: "Laser Dental Clinic — interior"
+},
+f1: { title: "Laser precision", desc: "WATERLASE technology for vibration-free preparation, no thermal shock and maximum preservation of healthy tissue." },
+f2: { title: "3D diagnostics", desc: "CBCT tomography, intraoral scanning and radiation-free Diagnocam for a complete digital map of oral health." },
+f3: { title: "Functional approach", desc: "Proprietary MFSP™ and BOSYNC™ protocols for stable occlusion, joints and long-lasting results." },
+f4: { title: "Human care", desc: "A calm atmosphere, service in three languages and a personalized approach to every patient." },
+showcase: {
+label: "Clinical experience",
+title: "Technology you can feel in the comfort of every procedure",
+sub: "Behind every smile lies a combination of science, precision and empathy.",
+i1: { title: "Diagnostics that see the invisible", desc: "CBCT 3D, Diagnocam and intraoral scanning create a complete, radiation-free picture of your oral health." },
+i2: { title: "Treatment that respects the body", desc: "Laser technology replaces the traditional drill, reducing trauma, discomfort and recovery time." },
+i3: { title: "Results that last for decades", desc: "Our proprietary functional protocols ensure that every restoration works in harmony with your bite." }
+},
+why: {
+label: "Why Laser Dental Clinic",
+title: "A choice that changes how you feel about the dentist",
+p1: "We know that a visit to the dentist can be a source of anxiety. That is why we designed every detail of the experience — from the first contact to the post-treatment period — so you feel safe, informed and well cared for.",
+p2: "Here, every clinical decision is explained in plain language. No rush, no surprises. Only a clear, transparent plan created specifically for you.",
+b1: "Full initial consultation",
+b2: "Multidisciplinary team in three languages",
+b3: "Laser technologies and 3D diagnostics integrated into your care",
+b4: "Proprietary protocols with a guarantee of stability",
+b5: "A clinical space with a welcoming, private design"
+},
+quote: {
+text: "“True precision lies not only in the instruments we use, but in the way we listen to every patient.”",
+author: "— Laser Dental Clinic Philosophy"
+},
+panel: {
+title: "Ready for a new vision of dental medicine?",
+sub: "From the initial consultation to full rehabilitation — every stage is planned with precision and transparency.",
+cta: "Book a consultation", cta2: "Get in touch"
+}
+},
+about: {
+label: "About us",
+title: "A clinic where precision meets serenity",
+sub: "Laser Dental Clinic is a luxury dental medicine concept in Sofia, focused on minimally invasive treatments, 3D diagnostics and proprietary functional protocols.",
+v1: { title: "Precision", desc: "We work with WATERLASE laser, low-dose CBCT tomography, intraoral scanning and photobiomodulation — integrated into an approach that treats the mouth as part of a complete biomechanical system." },
+v2: { title: "Transparency", desc: "Every diagnostic stage is documented — with 3D reconstructions, photographic records and a digital plan you can review and discuss with us." },
+v3: { title: "Comfort", desc: "The interior, music, lighting and pace of every procedure are designed to reduce anxiety and provide a calm experience." },
+v4: { title: "Science", desc: "We use evidence-based protocols — MFSP™, BOSYNC™ and Initial Therapy — ensuring predictability and long-term stability of results." },
+s1: "Specialties", s2: "Technologies", s3: "Radiation in screening", s4: "Languages of service"
+},
+services: {
+label: "Services",
+title: "Specialized care in one place",
+sub: "Ten clinical disciplines covering the full spectrum of modern dental medicine — from prevention to full rehabilitation.",
+items: [
+{ name: "Periodontology", desc: "Laser-assisted treatment of gingivitis and periodontitis with complete microbial decontamination of periodontal pockets.", tags: ["WATERLASE","PBM","Diagnocam"] },
+{ name: "Restorative Dentistry", desc: "Micro-invasive restoration of dental hard tissues using laser precision and high-strength ceramics.", tags: ["WATERLASE","3D Scanner","Diagnocam"] },
+{ name: "Endodontics", desc: "Precision root canal therapy under surgical microscope with laser disinfection of complex canal anatomy.", tags: ["CBCT","WATERLASE","PBM"] },
+{ name: "Orthodontics", desc: "Modern digitally planned orthodontics with clear aligners and aesthetic self-ligating systems.", tags: ["3D Scanner","CBCT","Functional Diagnostics"] },
+{ name: "Functional Orthodontics & Gnathology", desc: "Comprehensive biomechanical evaluation of TMJ, muscle tone, airway and posture.", tags: ["Functional Diagnostics","CBCT","PBM"] },
+{ name: "Prosthetics & Aesthetic Rehabilitation", desc: "Zirconia and pressable ceramic veneers, crowns and bridges with custom micro-texture and natural translucency.", tags: ["3D Scanner","Functional Diagnostics","CBCT"] },
+{ name: "Oral Surgery", desc: "Atraumatic extractions, frenectomy and bone recontouring with laser scalpel for accelerated suture-free healing.", tags: ["WATERLASE","PBM","CBCT"] },
+{ name: "Implantology", desc: "Premium titanium and ceramic implants positioned with custom 3D surgical guides for safe, lifelong stability.", tags: ["CBCT","WATERLASE","3D Scanner","PBM"] },
+{ name: "Paediatric Dentistry", desc: "Gentle caries treatment with hydrokinetic laser, no mechanical vibration and reduced need for needle anaesthesia.", tags: ["WATERLASE","Diagnocam","PBM"] },
+{ name: "Sports Dentistry", desc: "Custom multi-laminate protective mouthguards and gnathological stabilization for professional and recreational athletes.", tags: ["3D Scanner","Functional Diagnostics"] }
+]
+},
+team: {
+label: "Team",
+title: "Specialists dedicated to every detail",
+sub: "Illustrative clinical profiles representing the clinic's multidisciplinary structure.",
+items: [
+{ role: "Lead Dental Clinician", focus: "Laser dentistry and gnathology" },
+{ role: "Periodontist & Implant Surgeon", focus: "Periodontology and 3D guided implantation" },
+{ role: "Microscopic Endodontist", focus: "Complex root canal therapy" },
+{ role: "Orthodontist", focus: "Clear aligners and functional orthodontics" },
+{ role: "Clinical Hygienist", focus: "Prevention and periodontal maintenance" }
+ ]
+},
+gallery: {
+label: "Gallery",
+title: "Spaces and technologies",
+sub: "A look at the clinical environments, equipment and welcoming areas.",
+items: [
+{ cat: "Spaces", title: "Reception & lobby" },
+{ cat: "Technology", title: "Laser console" },
+{ cat: "Spaces", title: "Waiting area" },
+{ cat: "Technology", title: "3D imaging" },
+{ cat: "Operatories", title: "Clinical operatory" },
+{ cat: "Technology", title: "Digital scanning" },
+{ cat: "Spaces", title: "Sterilization suite" },
+{ cat: "Operatories", title: "Clinical equipment" }
+ ]
+},
+testimonials: {
+label: "Reviews",
+title: "A commitment to authenticity",
+sub: "This site is a demonstration concept. In line with Convertix_studio's ethical principles, we do not publish fabricated testimonials or simulated ratings.",
+notice: "Google Reviews integration will be activated upon official clinic commissioning. All future reviews will be authentic, verified and unmoderated.",
+criteria: ["Verified authentic reviews","Comfort in laser procedures","Long-term result tracking","Full transparency"]
+},
+contact: {
+label: "Contact",
+title: "Let's talk about your smile",
+sub: "Get in touch by phone, email or the form below. We reply within one business day.",
+addressLabel: "Address", emailLabel: "Email",
+phoneLabel: "Phone", hoursLabel: "Opening hours",
+hours: "Monday – Friday: 09:00 – 19:00",
+mapTitle: "How to find us",
+openMaps: "Open in Google Maps"
+},
+booking: {
+label: "Book appointment",
+title: "Reserve your consultation",
+sub: "Fill in the form below and we will contact you to confirm a convenient time.",
+serviceLabel: "Preferred service",
+servicePlaceholder: "Select a service",
+dateLabel: "Preferred date",
+messageLabel: "Additional notes",
+messagePh: "Anything we should know in advance",
+submit: "Send request"
+},
+form: {
+name: "Full name", namePh: "Your name",
+email: "Email", emailPh: "email@example.com",
+phone: "Phone", phonePh: "+359 ...",
+message: "Message", messagePh: "Briefly describe your need",
+send: "Send message",
+success: "Thank you! Your message has been sent successfully. We will contact you soon.",
+error: "Please complete all required fields correctly."
+},
+faq: {
+label: "FAQ",
+title: "Frequently asked questions",
+sub: "Answers to the most common questions from our patients.",
+items: [
+{ q: "What is laser dentistry?", a: "Laser dentistry uses precise light pulses instead of traditional drills for preparation, disinfection and soft tissue treatment. This enables minimally invasive procedures with less discomfort and faster recovery." },
+{ q: "Is laser treatment painful?", a: "Laser procedures are significantly gentler than conventional ones. Many patients report minimal or no discomfort, and in several cases treatment can be performed without local anaesthesia." },
+{ q: "How many visits will I need?", a: "The number of visits depends on the specific clinical case. After the initial diagnostics you will receive a clear plan with stages, duration and expected results." },
+{ q: "Do you accept health insurance?", a: "For information about health insurance and payment methods, please contact the clinic reception directly." },
+{ q: "How can I book an appointment?", a: "You can use the form in the 'Book Appointment' section, call us or send us an email. We will confirm your appointment within one business day." },
+{ q: "Which languages do you speak?", a: "We serve patients in Bulgarian, English and Portuguese." },
+{ q: "Do you treat children?", a: "Yes, we have a specialized approach for children based on minimally invasive techniques and a friendly atmosphere." },
+{ q: "What does the diagnostic process involve?", a: "The first visit includes 3D CBCT tomography, intraoral scanning, radiation-free Diagnocam analysis and a clinical examination. All data is integrated into a digital plan." },
+{ q: "How do you ensure hygiene?", a: "We follow strict European sterilization protocols with class B autoclaves and full batch traceability." },
+{ q: "Is there parking nearby?", a: "For information about parking and access, please contact the clinic reception." }
+ ]
+},
+privacy: {
+label: "Privacy",
+title: "Privacy policy",
+sections: [
+{ h: "1. Data controller", p: "The data controller is Laser Dental Clinic, 12 Chumerna Street, Sofia 1000, Bulgaria. For questions regarding personal data processing, contact info@laserdentalclinic-bg.com." },
+{ h: "2. What data we collect", p: "We collect personal data you voluntarily provide through our forms (name, email, phone, message) as well as technical information about site usage (cookies, IP address)." },
+{ h: "3. Purposes of processing", p: "We process data to respond to enquiries, organize consultations, provide clinical services and improve user experience." },
+{ h: "4. Legal basis", p: "Processing is based on your consent, contract performance, legal obligation or the controller's legitimate interest." },
+{ h: "5. Storage and security", p: "We retain personal data for the period necessary to fulfil the purposes for which it was collected, in compliance with applicable law. We implement technical and organizational protection measures." },
+{ h: "6. Your rights", p: "You have the right to access, rectify, erase, restrict processing, port data and object. You may exercise your rights by contacting us." },
+{ h: "7. Cookies", p: "The site may use cookies to improve functionality and analyze traffic. You can manage cookies through your browser settings." },
+{ h: "8. Contact", p: "For any questions about this policy, contact us at info@laserdentalclinic-bg.com." }
+ ]
+}
+},
+
+pt: {
+meta: {
+title: "Laser Dental Clinic — Sofia | Medicina Dentária a Laser de Precisão",
+desc: "Clínica dentária a laser em Sofia. Medicina a laser de precisão, diagnóstico 3D e cuidados orais personalizados."
+},
+brand: { name: "Laser Dental Clinic", tag: "Sofia · Bulgária" },
+nav: {
+home: "Início", about: "Sobre nós", services: "Serviços", team: "Equipa",
+gallery: "Galeria", testimonials: "Testemunhos", contact: "Contactos",
+booking: "Marcar Consulta", faq: "FAQ", privacy: "Privacidade"
+},
+sidebar: { cta: "Marcar Consulta" },
+footer: {
+copy: "© 2025 Convertix_studio. Conceito demonstrativo. Todos os direitos reservados.",
+credit: "Design e desenvolvimento por Convertix_studio"
+},
+home: {
+badge: "Conceito demonstrativo · Convertix_studio",
+title1: "Precisão a laser.", title2: "Cuidado humano.",
+sub: "Medicina dentária minimamente invasiva em Sofia, onde a tecnologia laser de última geração encontra a serenidade de um espaço clínico desenhado para o seu conforto.",
+cta1: "Marcar Consulta", cta2: "Explorar Serviços",
+stat1: "Disciplinas clínicas", stat2: "Tecnologias avançadas",
+stat3: "Protocolos próprios", stat4: "Diagnóstico digital",
+intro: {
+label: "A nossa filosofia",
+title: "Mais do que uma clínica — um centro de saúde oral de precisão",
+p1: "Na Laser Dental Clinic, acreditamos que a medicina dentária não se resume a tratar dentes. É cuidar da sua saúde global, da sua confiança e da sua qualidade de vida. Cada plano que criamos começa por compreender — não só o quadro clínico, mas também as suas expectativas, medos e dia a dia.",
+p2: "Utilizamos tecnologias de última geração — laser WATERLASE, diagnóstico CBCT 3D, escaneamento intraoral e fotobiomodulação — para alcançar resultados simultaneamente estéticos, funcionais e duradouros. Cada etapa é documentada e transparente, para que saiba exatamente o que está a acontecer e porquê.",
+p3: "A nossa equipa de especialistas trabalha em harmonia para oferecer soluções completas — desde cuidados preventivos e terapia laser até reabilitação estética total. Quer tenha uma consulta de rotina ou um tratamento complexo, está nas mãos de profissionais que colocam o seu conforto em primeiro lugar.",
+cta: "Saiba mais sobre nós",
+imageAlt: "Interior da Laser Dental Clinic"
+},
+f1: { title: "Precisão a laser", desc: "Tecnologia WATERLASE para preparação sem vibrações, sem choque térmico e com preservação máxima dos tecidos saudáveis." },
+f2: { title: "Diagnóstico 3D", desc: "Tomografia CBCT, escaneamento intraoral e Diagnocam sem radiação para um mapa digital completo da saúde oral." },
+f3: { title: "Abordagem funcional", desc: "Protocolos próprios MFSP™ e BOSYNC™ para estabilidade da oclusão, articulações e resultados duradouros." },
+f4: { title: "Cuidado humano", desc: "Atmosfera tranquila, atendimento em três idiomas e abordagem personalizada a cada paciente." },
+showcase: {
+label: "Experiência clínica",
+title: "Tecnologia que se sente no conforto de cada consulta",
+sub: "Por trás de cada sorriso existe uma combinação de ciência, precisão e empatia.",
+i1: { title: "Diagnóstico que vê o invisível", desc: "CBCT 3D, Diagnocam e escaneamento intraoral criam uma visão completa e sem radiação da sua saúde oral." },
+i2: { title: "Tratamento que respeita o corpo", desc: "A tecnologia laser substitui a broca tradicional, reduzindo o trauma, o desconforto e o tempo de recuperação." },
+i3: { title: "Resultados que duram décadas", desc: "Os protocolos funcionais exclusivos garantem que cada restauração funciona em harmonia com a sua mordida." }
+},
+why: {
+label: "Porquê a Laser Dental Clinic",
+title: "Uma escolha que muda a sua relação com o dentista",
+p1: "Sabemos que ir ao dentista pode ser motivo de ansiedade. Por isso desenhámos cada detalhe da experiência — desde o primeiro contacto até ao pós-tratamento — para que se sinta seguro, informado e bem cuidado.",
+p2: "Aqui, cada decisão clínica é explicada em linguagem simples. Não há pressa, não há surpresas. Apenas um plano claro, transparente e desenhado especificamente para si.",
+b1: "Consulta inicial completa",
+b2: "Equipa multidisciplinar em três idiomas",
+b3: "Tecnologia laser e diagnóstico 3D integrados",
+b4: "Protocolos próprios com garantia de estabilidade",
+b5: "Espaço clínico com design acolhedor e privado"
+},
+quote: {
+text: "«A verdadeira precisão não está apenas nos instrumentos que usamos, mas na forma como ouvimos cada paciente.»",
+author: "— Filosofia Laser Dental Clinic"
+},
+panel: {
+title: "Pronto para uma nova visão da medicina dentária?",
+sub: "Da consulta inicial à reabilitação total — cada etapa é planeada com precisão e transparência.",
+cta: "Marcar consulta", cta2: "Fale connosco"
+}
+},
+about: {
+label: "Sobre nós",
+title: "Uma clínica onde a precisão encontra a serenidade",
+sub: "A Laser Dental Clinic é um conceito de medicina dentária de luxo em Sofia, focado em tratamentos minimamente invasivos, diagnóstico 3D e protocolos funcionais próprios.",
+v1: { title: "Precisão", desc: "Trabalhamos com laser WATERLASE, tomografia CBCT de baixa dose, escaneamento intraoral e fotobiomodulação — integrados numa abordagem que trata a boca como parte de um sistema biomecânico completo." },
+v2: { title: "Transparência", desc: "Cada etapa diagnóstica é documentada — com reconstruções 3D, registos fotográficos e um plano digital que pode rever e discutir connosco." },
+v3: { title: "Conforto", desc: "O interior, a música, a iluminação e o ritmo de cada procedimento são desenhados para reduzir a ansiedade e proporcionar uma experiência tranquila." },
+v4: { title: "Ciência", desc: "Utilizamos protocolos baseados em evidência — MFSP™, BOSYNC™ e Initial Therapy — que garantem previsibilidade e estabilidade a longo prazo dos resultados." },
+s1: "Especialidades", s2: "Tecnologias", s3: "Radiação no rastreio", s4: "Idiomas de atendimento"
+},
+services: {
+label: "Serviços",
+title: "Cuidados especializados num só lugar",
+sub: "Dez disciplinas clínicas que cobrem todo o espetro da medicina dentária moderna — da prevenção à reabilitação total.",
+items: [
+{ name: "Periodontologia", desc: "Tratamento laser de gengivite e periodontite com descontaminação microbiana completa das bolsas periodontais.", tags: ["WATERLASE","PBM","Diagnocam"] },
+{ name: "Medicina Dentária Restauradora", desc: "Restauração microinvasiva dos tecidos dentários duros com precisão laser e cerâmicas de alta resistência.", tags: ["WATERLASE","Scanner 3D","Diagnocam"] },
+{ name: "Endodontia", desc: "Tratamento radicular de precisão sob microscópio cirúrgico com desinfeção laser de anatomia complexa.", tags: ["CBCT","WATERLASE","PBM"] },
+{ name: "Ortodontia", desc: "Ortodontia moderna planeada digitalmente com alinhadores transparentes e sistemas autoligáveis estéticos.", tags: ["Scanner 3D","CBCT","Diagnóstico Funcional"] },
+{ name: "Ortodontia Funcional & Gnatologia", desc: "Avaliação biomecânica abrangente das ATM, tónus muscular, vias aéreas e postura.", tags: ["Diagnóstico Funcional","CBCT","PBM"] },
+{ name: "Prótese & Reabilitação Estética", desc: "Facetas, coroas e pontes em zircónia e cerâmica prensada com microtextura personalizada e translucidez natural.", tags: ["Scanner 3D","Diagnóstico Funcional","CBCT"] },
+{ name: "Cirurgia Oral", desc: "Extrações atraumáticas, frenectomia e remodelação óssea com laser cirúrgico para cicatrização acelerada sem suturas.", tags: ["WATERLASE","PBM","CBCT"] },
+{ name: "Implantologia", desc: "Implantes premium de titânio e cerâmica posicionados com guias cirúrgicos 3D personalizados para estabilidade duradoura.", tags: ["CBCT","WATERLASE","Scanner 3D","PBM"] },
+{ name: "Odontopediatria", desc: "Tratamento de cáries infantis com laser hidrocinético, sem vibrações mecânicas e com menor necessidade de anestesia injetável.", tags: ["WATERLASE","Diagnocam","PBM"] },
+{ name: "Medicina Dentária Desportiva", desc: "Goteiras de proteção multilaminadas personalizadas e estabilização gnatológica para atletas profissionais e amadores.", tags: ["Scanner 3D","Diagnóstico Funcional"] }
+]
+},
+team: {
+label: "Equipa",
+title: "Especialistas dedicados a cada detalhe",
+sub: "Perfis clínicos ilustrativos que representam a estrutura multidisciplinar da clínica.",
+items: [
+{ role: "Clínico Principal", focus: "Medicina dentária a laser e gnatologia" },
+{ role: "Periodontologista & Implantologista", focus: "Periodontologia e implantologia 3D guiada" },
+{ role: "Endodontista Microscópico", focus: "Tratamento radicular complexo" },
+{ role: "Ortodontista", focus: "Alinhadores transparentes e ortodontia funcional" },
+{ role: "Higienista Clínico", focus: "Prevenção e manutenção periodontal" }
+ ]
+},
+gallery: {
+label: "Galeria",
+title: "Espaços e tecnologias",
+sub: "Uma visão dos ambientes clínicos, equipamentos e áreas de acolhimento.",
+items: [
+{ cat: "Espaços", title: "Receção e lobby" },
+{ cat: "Tecnologia", title: "Consola laser" },
+{ cat: "Espaços", title: "Sala de espera" },
+{ cat: "Tecnologia", title: "Imagiologia 3D" },
+{ cat: "Gabinetes", title: "Gabinete clínico" },
+{ cat: "Tecnologia", title: "Escaneamento digital" },
+{ cat: "Espaços", title: "Central de esterilização" },
+{ cat: "Gabinetes", title: "Equipamento clínico" }
+ ]
+},
+testimonials: {
+label: "Testemunhos",
+title: "Um compromisso com a autenticidade",
+sub: "Este site é um conceito demonstrativo. Em linha com os princípios éticos da Convertix_studio, não publicamos testemunhos fabricados nem avaliações simuladas.",
+notice: "A integração com o Google Reviews será ativada após o comissionamento oficial da clínica. Todos os futuros testemunhos serão autênticos, verificados e sem moderação.",
+criteria: ["Testemunhos autênticos verificados","Conforto em procedimentos laser","Monitorização de resultados a longo prazo","Transparência total"]
+},
+contact: {
+label: "Contactos",
+title: "Vamos falar sobre o seu sorriso",
+sub: "Contacte-nos por telefone, email ou através do formulário. Respondemos no prazo de um dia útil.",
+addressLabel: "Morada", emailLabel: "Email",
+phoneLabel: "Telefone", hoursLabel: "Horário",
+hours: "Segunda – Sexta: 09:00 – 19:00",
+mapTitle: "Como nos encontrar",
+openMaps: "Abrir no Google Maps"
+},
+booking: {
+label: "Marcar consulta",
+title: "Reserve a sua consulta",
+sub: "Preencha o formulário abaixo e entraremos em contacto para confirmar um horário conveniente.",
+serviceLabel: "Serviço pretendido",
+servicePlaceholder: "Selecione um serviço",
+dateLabel: "Data preferida",
+messageLabel: "Notas adicionais",
+messagePh: "Tudo o que precisamos de saber antecipadamente",
+submit: "Enviar pedido"
+},
+form: {
+name: "Nome completo", namePh: "O seu nome",
+email: "Email", emailPh: "email@exemplo.com",
+phone: "Telefone", phonePh: "+351 ...",
+message: "Mensagem", messagePh: "Descreva brevemente a sua necessidade",
+send: "Enviar mensagem",
+success: "Obrigado! A sua mensagem foi enviada com sucesso. Entraremos em contacto brevemente.",
+error: "Por favor, preencha todos os campos obrigatórios corretamente."
+},
+faq: {
+label: "FAQ",
+title: "Perguntas frequentes",
+sub: "Respostas às perguntas mais comuns dos nossos pacientes.",
+items: [
+{ q: "O que é a medicina dentária a laser?", a: "A medicina dentária a laser usa impulsos de luz precisos em vez de brocas tradicionais para preparação, desinfeção e tratamento de tecidos moles. Isto permite procedimentos minimamente invasivos, com menos desconforto e recuperação mais rápida." },
+{ q: "O tratamento a laser é doloroso?", a: "Os procedimentos a laser são significativamente mais suaves do que os convencionais. Muitos pacientes relatam desconforto mínimo ou nulo, e em vários casos o tratamento pode ser realizado sem anestesia local." },
+{ q: "Quantas consultas serão necessárias?", a: "O número de consultas depende do caso clínico específico. Após o diagnóstico inicial, receberá um plano claro com etapas, duração e resultado esperado." },
+{ q: "Aceitam seguros de saúde?", a: "Para informações sobre seguros de saúde e métodos de pagamento, contacte diretamente a receção da clínica." },
+{ q: "Como posso marcar uma consulta?", a: "Pode usar o formulário na secção 'Marcar Consulta', ligar-nos ou enviar-nos um email. Confirmaremos a marcação no prazo de um dia útil." },
+{ q: "Que idiomas falam?", a: "Atendemos pacientes em búlgaro, inglês e português." },
+{ q: "Tratam crianças?", a: "Sim, temos uma abordagem especializada para crianças baseada em técnicas minimamente invasivas e uma atmosfera acolhedora." },
+{ q: "Como funciona o processo de diagnóstico?", a: "A primeira consulta inclui tomografia CBCT 3D, escaneamento intraoral, análise Diagnocam sem radiação e exame clínico. Todos os dados são integrados num plano digital." },
+{ q: "Como garantem a higiene?", a: "Seguimos rigorosos protocolos europeus de esterilização com autoclaves classe B e rastreabilidade total dos lotes." },
+{ q: "Existe estacionamento próximo?", a: "Para informações sobre estacionamento e acesso, contacte a receção da clínica." }
+ ]
+},
+privacy: {
+label: "Privacidade",
+title: "Política de privacidade",
+sections: [
+{ h: "1. Responsável pelo tratamento", p: "O responsável pelo tratamento dos dados é a Laser Dental Clinic, Rua Chumerna 12, Sófia 1000, Bulgária. Para questões relativas ao tratamento de dados pessoais, contacte info@laserdentalclinic-bg.com." },
+{ h: "2. Que dados recolhemos", p: "Recolhemos dados pessoais que fornece voluntariamente através dos nossos formulários (nome, email, telefone, mensagem), bem como informação técnica sobre a utilização do site (cookies, endereço IP)." },
+{ h: "3. Finalidades do tratamento", p: "Tratamos os dados para responder a pedidos de informação, organizar consultas, prestar serviços clínicos e melhorar a experiência do utilizador." },
+{ h: "4. Base legal", p: "O tratamento baseia-se no seu consentimento, na execução de um contrato, em obrigação legal ou no interesse legítimo do responsável." },
+{ h: "5. Conservação e segurança", p: "Conservamos os dados pessoais pelo período necessário para cumprir as finalidades para as quais foram recolhidos, em conformidade com a legislação aplicável. Implementamos medidas técnicas e organizativas de proteção." },
+{ h: "6. Os seus direitos", p: "Tem direito de acesso, retificação, apagamento, limitação do tratamento, portabilidade dos dados e oposição. Pode exercer os seus direitos contactando-nos." },
+{ h: "7. Cookies", p: "O site pode usar cookies para melhorar a funcionalidade e analisar o tráfego. Pode gerir os cookies através das configurações do seu navegador." },
+{ h: "8. Contacto", p: "Para quaisquer questões sobre esta política, contacte-nos em info@laserdentalclinic-bg.com." }
+ ]
+}
+}
+};
+
+/* ============================================================
+HELPERS
+============================================================ */
+function getT(obj, path){
+return path.split('.').reduce((acc,k) => (acc && acc[k] !== undefined) ? acc[k] : undefined, obj);
+}
+
+/* ============================================================
+LANGUAGE SYSTEM
+============================================================ */
+let currentLang = localStorage.getItem('ldc_lang') || 'bg';
+
+function applyLanguage(lang){
+if (!translations[lang]) lang = 'bg';
+currentLang = lang;
+localStorage.setItem('ldc_lang', lang);
+const t = translations[lang];
+
+document.documentElement.lang = lang;
+document.title = t.meta.title;
+const metaDesc = document.querySelector('meta[name="description"]');
+if (metaDesc) metaDesc.setAttribute('content', t.meta.desc);
+
+// data-i18n
+document.querySelectorAll('[data-i18n]').forEach(el => {
+const key = el.getAttribute('data-i18n');
+const val = getT(t, key);
+if (val !== undefined && typeof val === 'string') el.textContent = val;
+});
+
+// data-i18n-alt
+document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+const key = el.getAttribute('data-i18n-alt');
+const val = getT(t, key);
+if (val !== undefined) el.setAttribute('alt', val);
+});
+
+// placeholders
+document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+const key = el.getAttribute('data-i18n-placeholder');
+const val = getT(t, key);
+if (val !== undefined) el.setAttribute('placeholder', val);
+});
+
+// aria-label
+document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+const key = el.getAttribute('data-i18n-aria');
+const val = getT(t, key);
+if (val !== undefined) el.setAttribute('aria-label', val);
+});
+
+// lang buttons
+document.querySelectorAll('[data-lang]').forEach(btn => {
+btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+});
+
+// dynamic sections
+renderServices(t);
+renderTeam(t);
+renderGallery(t);
+renderFaq(t);
+renderCriteria(t);
+renderPrivacy(t);
+renderServiceOptions(t);
+
+// refresh reveal observer
+initReveal();
+}
+
+/* ============================================================
+DYNAMIC RENDERING
+============================================================ */
+function renderServices(t){
+const grid = document.getElementById('servicesGrid');
+if (!grid) return;
+grid.innerHTML = t.services.items.map((item, i) => &lt;article class="card reveal ${i < 3 ? 'reveal-d' + i : ''}">
+<span class="card-num">${String(i+1).padStart(2,'0')}&lt;/span&gt; &lt;h3&gt;${item.name}</h3>
+<p>${item.desc}&lt;/p&gt; &lt;div class="tags"&gt;${item.tags.map(tag => <span class="tag"&gt;${tag}</span>).join('')}&lt;/div&gt; &lt;/article&gt;).join('');
+}
+
+function renderTeam(t){
+const grid = document.getElementById('teamGrid');
+if (!grid) return;
+const initials = ['LC','PE','EN','OR','HY'];
+grid.innerHTML = t.team.items.map((item, i) => &lt;article class="team-card reveal ${i < 3 ? 'reveal-d' + i : ''}">
+<div class="team-avatar">${initials[i] || 'LD'}&lt;/div&gt; &lt;h4&gt;${item.role}</h4>
+<div class="team-role">${item.focus}&lt;/div&gt; &lt;p style="font-size:.82rem;color:var(--muted)"&gt;${t.team.sub}</p>
+</article>
+`).join('');
+}
+
+function renderGallery(t){
+const grid = document.getElementById('galleryGrid');
+if (!grid) return;
+const imgs = [
+'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=600&q=80&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?w=600&q=80&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1580281657527-47f249e8f4df?w=600&q=80&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1550831107-1553da8c8464?w=600&q=80&auto=format&fit=crop'
+ ];
+grid.innerHTML = t.gallery.items.map((item, i) => &lt;div class="gallery-item reveal${i < 3 ? 'reveal-d' + i : ''}">
+<img src="{item.title}" loading="lazy">
+<div class="gallery-overlay">
+<span class="gallery-cat">{item.title}</span>
+</div>
+</div>
+`).join('');
+}
+
+function renderFaq(t){
+const list = document.getElementById('faqList');
+if (!list) return;
+list.innerHTML = t.faq.items.map((item, i) => &lt;details class="faq-item reveal ${i < 3 ? 'reveal-d' + i : ''}">
+<summary>${item.q}&lt;/summary&gt; &lt;div class="faq-content"&gt;${item.a}</div>
+</details>
+`).join('');
+}
+
+function renderCriteria(t){
+const list = document.getElementById('criteriaList');
+if (!list) return;
+list.innerHTML = t.testimonials.criteria.map(c => <span class="tag"&gt;${c}</span>`).join('');
+}
+
+function renderPrivacy(t){
+const body = document.getElementById('privacyBody');
+if (!body) return;
+body.innerHTML = t.privacy.sections.map(s => &lt;h3&gt;${s.h}</h3>
+<p>${s.p}&lt;/p&gt;).join('');
+}
+
+function renderServiceOptions(t){
+const select = document.getElementById('b-service');
+if (!select) return;
+const first = select.querySelector('option');
+if (first) first.textContent = t.booking.servicePlaceholder;
+Array.from(select.querySelectorAll('option')).forEach((opt, i) => { if (i > 0) opt.remove(); });
+t.services.items.forEach(item => {
+const opt = document.createElement('option');
+opt.value = item.name;
+opt.textContent = item.name;
+select.appendChild(opt);
+});
+}
+
+/* ============================================================
+NAVIGATION
+============================================================ */
+function navigateTo(pageId){
+const current = document.querySelector('.page.active');
+const next = document.querySelector(.page[data-page="${pageId}"]`);
+if (!next || current === next){
+if (next) closeSidebar();
+return;
+}
+
+if (current) current.classList.remove('active');
+next.classList.add('active');
+
+document.querySelectorAll('.nav-item').forEach(n => {
+n.classList.toggle('active', n.getAttribute('data-page') === pageId);
+});
+
+history.replaceState(null, '', '#' + pageId);
+window.scrollTo({ top: 0, behavior: 'smooth' });
+
+closeSidebar();
+setTimeout(initReveal, 30);
+}
+
+function initNavigation(){
+document.querySelectorAll('[data-page]').forEach(el => {
+el.addEventListener('click', (e) => {
+e.preventDefault();
+const page = el.getAttribute('data-page');
+if (page) navigateTo(page);
+});
+});
+
+const hash = window.location.hash.slice(1);
+if (hash && document.querySelector(.page[data-page="${hash}"]`)) {
+navigateTo(hash);
+}
+}
+
+/* ============================================================
+SIDEBAR MOBILE
+============================================================ */
+function closeSidebar(){
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('sidebarOverlay');
+const hamburger = document.getElementById('hamburger');
+sidebar.classList.remove('open');
+overlay.classList.remove('show');
+hamburger.classList.remove('open');
+document.body.classList.remove('no-scroll');
+}
+
+function initSidebar(){
+const hamburger = document.getElementById('hamburger');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('sidebarOverlay');
+
+hamburger.addEventListener('click', () => {
+const isOpen = sidebar.classList.toggle('open');
+overlay.classList.toggle('show', isOpen);
+hamburger.classList.toggle('open', isOpen);
+document.body.classList.toggle('no-scroll', isOpen);
+});
+
+overlay.addEventListener('click', closeSidebar);
+}
+
+/* ============================================================
+LANGUAGE SWITCH
+============================================================ */
+function initLangSwitch(){
+document.querySelectorAll('[data-lang]').forEach(btn => {
+btn.addEventListener('click', () => {
+applyLanguage(btn.getAttribute('data-lang'));
+});
+});
+}
+
+/* ============================================================
+REVEAL OBSERVER
+============================================================ */
+let revealObserver;
+function initReveal(){
+if (revealObserver) revealObserver.disconnect();
+revealObserver = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting){
+entry.target.classList.add('visible');
+revealObserver.unobserve(entry.target);
+}
+});
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObserver.observe(el));
+}
+
+/* ============================================================
+FORMS
+============================================================ */
+function handleForm(formId, feedbackId){
+const form = document.getElementById(formId);
+const feedback = document.getElementById(feedbackId);
+if (!form || !feedback) return;
+
+form.addEventListener('submit', (e) => {
+e.preventDefault();
+const t = translations[currentLang];
+const inputs = form.querySelectorAll('[required]');
+let valid = true;
+inputs.forEach(inp => {
+if (!inp.value.trim()) valid = false;
+});
+if (!valid){
+feedback.textContent = t.form.error;
+feedback.className = 'form-feedback error';
+return;
+}
+feedback.textContent = t.form.success;
+feedback.className = 'form-feedback success';
+form.reset();
+setTimeout(() => {
+feedback.className = 'form-feedback';
+}, 6000);
+});
+}
+
+/* ============================================================
+CANVAS 3D BACKGROUND
+============================================================ */
+function initCanvas(){
+const canvas = document.getElementById('bg-canvas');
+if (!canvas) return;
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+canvas.style.display = 'none';
+return;
+}
+
+const ctx = canvas.getContext('2d');
+let w, h, particles = [];
+const COUNT = 55;
+const COLORS = [
+'rgba(184,149,106,',
+'rgba(10,22,40,'
+ ];
+let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
+
+function resize(){
+w = canvas.width = window.innerWidth * (window.devicePixelRatio || 1);
+h = canvas.height = window.innerHeight * (window.devicePixelRatio || 1);
+canvas.style.width = window.innerWidth + 'px';
+canvas.style.height = window.innerHeight + 'px';
+createParticles();
+}
+
+function createParticles(){
+particles = [];
+for (let i = 0; i < COUNT; i++){
+particles.push({
+x: Math.random() * w,
+y: Math.random() * h,
+vx: (Math.random() - 0.5) * 0.3,
+vy: (Math.random() - 0.5) * 0.3,
+r: Math.random() * 2 + 0.8,
+color: COLORS[Math.floor(Math.random() * COLORS.length)],
+alpha: Math.random() * 0.35 + 0.15
+});
+}
+}
+
+function draw(){
+ctx.clearRect(0, 0, w, h);
+
+mouseX += (targetX - mouseX) * 0.05;
+mouseY += (targetY - mouseY) * 0.05;
+
+const offsetX = mouseX * 20;
+const offsetY = mouseY * 20;
+
+for (let i = 0; i < particles.length; i++){
+for (let j = i + 1; j < particles.length; j++){
+const dx = (particles[i].x + offsetX) - (particles[j].x + offsetX);
+const dy = (particles[i].y + offsetY) - (particles[j].y + offsetY);
+const dist = Math.sqrt(dxdx + dydy);
+if (dist < 140){
+ctx.beginPath();
+ctx.strokeStyle = rgba(184,149,106,${0.08 * (1 - dist / 140)});
+ctx.lineWidth = 0.6;
+ctx.moveTo(particles[i].x + offsetX, particles[i].y + offsetY);
+ctx.lineTo(particles[j].x + offsetX, particles[j].y + offsetY);
+ctx.stroke();
+}
+}
+}
+
+particles.forEach(p => {
+ctx.beginPath();
+ctx.arc(p.x + offsetX, p.y + offsetY, p.r, 0, Math.PI * 2);
+ctx.fillStyle = p.color + p.alpha + ')';
+ctx.fill();
+
+p.x += p.vx;
+p.y += p.vy;
+
+if (p.x < 0 || p.x > w) p.vx *= -1;
+if (p.y < 0 || p.y > h) p.vy *= -1;
+});
+
+requestAnimationFrame(draw);
+}
+
+window.addEventListener('mousemove', (e) => {
+targetX = (e.clientX / window.innerWidth - 0.5) * 2;
+targetY = (e.clientY / window.innerHeight - 0.5) * 2;
+});
+
+let resizeTimer;
+window.addEventListener('resize', () => {
+clearTimeout(resizeTimer);
+resizeTimer = setTimeout(resize, 200);
+});
+
+resize();
+draw();
+}
+
+/* ============================================================
+BOOTSTRAP
+============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+applyLanguage(currentLang);
+initNavigation();
+initSidebar();
+initLangSwitch();
+initCanvas();
+handleForm('contactForm', 'contactFeedback');
+handleForm('bookingForm', 'bookingFeedback');
+});
+</script>
+
+</body>
+</html>
